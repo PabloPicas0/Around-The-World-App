@@ -5,13 +5,14 @@ import * as d3 from "d3";
 
 import RenderWorld from "./Components/RenderWorld";
 
-function App() {
-  const [count, setCount] = useState(0);
+const w = 960;
+const h = 500;
 
+function App() {
   return (
-    <div className="App">
+    <svg width={w} height={h}>
       <RenderWorld></RenderWorld>
-    </div>
+    </svg>
   );
 }
 
