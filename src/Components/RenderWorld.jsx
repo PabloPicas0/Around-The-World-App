@@ -5,6 +5,9 @@ import { feature } from "topojson-client";
 
 const url = "https://unpkg.com/world-atlas@2.0.2/countries-50m.json";
 
+// Dimmensions for svg element
+const w = 960;
+const h = 600;
 const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
 const RenderWorld = () => {
@@ -30,21 +33,23 @@ const RenderWorld = () => {
   return (
     <>
       {!country ? (
-        <p>Please refesh the page</p>
+        <h1>Loading...</h1>
       ) : (
-        <g transform={`translate(${margin.left}, ${margin.top})`}>
-          <g id="country-map">
-            <path className="sphere" d={path(outline)}></path>
-            <path d={path(graticule)} className="graticule"></path>
-            {country.features.map((feature) => (
-              <path
-                key={feature.properties.name}
-                id={feature.id}
-                className="country"
-                d={path(feature)}></path>
-            ))}
+        <svg width={w} height={h}>
+          <g transform={`translate(${margin.left}, ${margin.top})`}>
+            <g id="country-map">
+              <path className="sphere" d={path(outline)}></path>
+              <path d={path(graticule)} className="graticule"></path>
+              {country.features.map((feature) => (
+                <path
+                  key={feature.properties.name}
+                  id={feature.id}
+                  className="country"
+                  d={path(feature)}></path>
+              ))}
+            </g>
           </g>
-        </g>
+        </svg>
       )}
     </>
   );
