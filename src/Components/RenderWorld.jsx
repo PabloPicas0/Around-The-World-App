@@ -11,6 +11,11 @@ const RenderWorld = () => {
   const [country, setCountry] = useState(null);
   const [land, setLand] = useState(null);
 
+  const outline = { type: "Sphere" };
+  const graticule = d3.geoGraticule10()
+  const projection = d3.geoOrthographic();
+  const path = d3.geoPath(projection);
+
   useEffect(() => {
     d3.json(url).then((response) => {
       const geojsonCountries = feature(response, response.objects.countries);
@@ -23,16 +28,15 @@ const RenderWorld = () => {
 
   console.log(country);
 
-  const projection = d3.geoOrthographic();
-  const path = d3.geoPath(projection);
-
   return (
     <>
       {!country ? (
-        <p>Loading...</p>
+        <p>Please refesh the page</p>
       ) : (
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <g id="country-map">
+            <path className="sphere" d={path(outline)}></path>
+            <path d={path(graticule)} className="graticule"></path>
             {country.features.map((feature) => (
               <path
                 key={feature.properties.name}
