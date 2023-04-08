@@ -9,20 +9,19 @@ const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
 const RenderWorld = () => {
   const [country, setCountry] = useState(null);
-  const [land, setLand] = useState(null);
 
+  // Useful source documentation about crating world map
+  // Source: https://observablehq.com/@d3/world-map-svg
   const outline = { type: "Sphere" };
-  const graticule = d3.geoGraticule10()
-  const projection = d3.geoOrthographic();
+  const graticule = d3.geoGraticule10();
+  const projection = d3.geoOrthographic().scale(250).center([0, 0]).rotate([0, -20]);
   const path = d3.geoPath(projection);
 
   useEffect(() => {
     d3.json(url).then((response) => {
       const geojsonCountries = feature(response, response.objects.countries);
-      const geojsonLand = feature(response, response.objects.land);
 
       setCountry(geojsonCountries);
-      setLand(geojsonLand);
     });
   }, []);
 

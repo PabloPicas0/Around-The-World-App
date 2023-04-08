@@ -6,14 +6,21 @@
 }
 
 .sphere {
-  fill: lightgray;
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.1);
+  stroke-width: 1px;
 }
 
 .country {
-  fill: black;
+  fill: #8b8b88;
+  stroke: #fff;
+  stroke-width: 0.0px;
+  stroke-linejoin: round;
 }
 
 .graticule {
-  stroke: #000;
   fill: none;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 0.5px;
 }
