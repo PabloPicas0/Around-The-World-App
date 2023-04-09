@@ -1,9 +1,13 @@
-import "./App.css";
-
 import RenderWorld from "./Components/RenderWorld";
 
+import "./App.css";
+
 function App() {
-  return <RenderWorld></RenderWorld>;
+  return (
+    <>
+      <RenderWorld />
+    </>
+  );
 }
 
 export default App;

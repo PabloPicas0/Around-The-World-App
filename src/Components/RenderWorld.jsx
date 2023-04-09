@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import * as d3 from "d3";
 import { feature } from "topojson-client";
@@ -12,13 +12,22 @@ const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
 const RenderWorld = () => {
   const [country, setCountry] = useState(null);
+  const svgRef = useRef(null);
 
   // Useful source documentation about crating world map
   // Source: https://observablehq.com/@d3/world-map-svg
   const outline = { type: "Sphere" };
   const graticule = d3.geoGraticule10();
-  const projection = d3.geoOrthographic().scale(250).center([0, 0]).rotate([0, -20]);
-  const path = d3.geoPath(projection);
+  let projection = d3.geoOrthographic().scale(250).center([0, 0]).rotate([0, -20]);
+  let path = d3.geoPath(projection);
+
+  const svg = d3.select(svgRef.current);
+
+  const drag = d3.drag().on("drag", (e) => {
+    console.log(e)
+  });
+
+  svg.call(drag);
 
   useEffect(() => {
     d3.json(url).then((response) => {
@@ -28,14 +37,12 @@ const RenderWorld = () => {
     });
   }, []);
 
-  console.log(country);
-
   return (
     <>
       {!country ? (
         <h1>Loading...</h1>
       ) : (
-        <svg width={w} height={h}>
+        <svg ref={svgRef} width={w} height={h}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <g id="country-map">
               <path className="sphere" d={path(outline)}></path>
