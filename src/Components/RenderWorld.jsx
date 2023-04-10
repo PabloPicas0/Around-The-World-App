@@ -37,7 +37,19 @@ const RenderWorld = () => {
       svg.selectAll("path").attr("d", path);
     });
 
+    const zoom = d3.zoom().on("zoom", (e) => {
+      if (e.transform.k > 0.3) {
+        projection.scale(230 * e.transform.k); // 230 is taken from default scale projection
+
+        svg.selectAll("path").attr("d", path);
+      } else {
+        e.transform.k = 0.3
+      }
+      console.log(projection.scale())
+    });
+
     svg.call(drag);
+    svg.call(zoom);
 
     // Creating conatiner
     const container = svg
