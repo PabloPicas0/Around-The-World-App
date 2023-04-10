@@ -38,14 +38,14 @@ const RenderWorld = () => {
     });
 
     const zoom = d3.zoom().on("zoom", (e) => {
-      if (e.transform.k > 0.3) {
+      if (e.transform.k > 0.4 && e.transform.k < 5) {
         projection.scale(230 * e.transform.k); // 230 is taken from default scale projection
 
         svg.selectAll("path").attr("d", path);
       } else {
-        e.transform.k = 0.3
+        const k = e.transform.k < 0.4 ? 0.4 : 5
+        e.transform.k = k
       }
-      console.log(projection.scale())
     });
 
     svg.call(drag);
