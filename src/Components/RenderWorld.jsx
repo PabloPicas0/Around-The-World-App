@@ -43,8 +43,8 @@ const RenderWorld = () => {
 
         svg.selectAll("path").attr("d", path);
       } else {
-        const k = e.transform.k < 0.4 ? 0.4 : 5
-        e.transform.k = k
+        const k = e.transform.k <= 0.4 ? 0.4 : 5;
+        e.transform.k = k;
       }
     });
 
