@@ -17,8 +17,8 @@ const RenderWorld = () => {
   // Source: https://observablehq.com/@d3/world-map-svg
   const outline = { type: "Sphere" };
   const graticule = d3.geoGraticule10();
-  let projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
-  let path = d3.geoPath(projection);
+  const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
+  const path = d3.geoPath(projection);
 
   useEffect(() => {
     // Selected svg elemnt using d3 and react ref

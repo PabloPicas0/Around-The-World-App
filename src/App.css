@@ -14,8 +14,12 @@
 .country {
   fill: #8b8b88;
   stroke: #fff;
-  stroke-width: 0.0px;
+  stroke-width: 0px;
   stroke-linejoin: round;
+}
+
+.country:hover {
+  fill: brown;
 }
 
 .graticule {
