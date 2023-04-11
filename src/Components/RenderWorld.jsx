@@ -76,7 +76,8 @@ const RenderWorld = () => {
         .enter()
         .append("path")
         .attr("class", "country")
-        .attr("d", path);
+        .attr("d", path)
+        .on("mouseover", onMouseOver)
     });
 
     // Cleanup on unmounting component
@@ -88,6 +89,7 @@ const RenderWorld = () => {
   return (
     <>
       <svg ref={svgRef} width={w} height={h}></svg>
+      <div id="tooltip"></div>
     </>
   );
 };
