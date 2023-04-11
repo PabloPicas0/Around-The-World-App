@@ -35,6 +35,7 @@ const RenderWorld = () => {
       projection.rotate([x + e.dx * sens, y - e.dy * sens]);
 
       svg.selectAll("path").attr("d", path);
+      console.log(projection.rotate());
     });
 
     const zoom = d3.zoom().on("zoom", (e) => {
@@ -60,10 +61,24 @@ const RenderWorld = () => {
     };
 
     const onMouseOut = () => {
-      const tooltip = d3.select("#tooltip")
+      const tooltip = d3.select("#tooltip");
 
-      tooltip.style("opacity", 0)
-    }
+      tooltip.style("opacity", 0);
+    };
+
+    const onClick = (e) => {
+      // Get the clicked point
+      const [x, y] = d3.pointer(e);
+
+      // Convert the clicked point to coordinates
+      const coords = projection.invert([x, y]);
+
+      // Update the rotation to the opposite of the clicked point's coordinates
+      projection.rotate([-coords[0], -coords[1]]);
+
+      // Redraw the globe
+      svg.selectAll("path").attr("d", path);
+    };
 
     svg.call(drag);
     svg.call(zoom);
@@ -96,6 +111,7 @@ const RenderWorld = () => {
         .attr("d", path)
         .on("mousemove", onMouseMove)
         .on("mouseout", onMouseOut)
+        .on("click", onClick);
     });
 
     // Cleanup on unmounting component
