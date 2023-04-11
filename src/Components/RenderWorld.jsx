@@ -48,6 +48,23 @@ const RenderWorld = () => {
       }
     });
 
+    const onMouseMove = (event) => {
+      const tooltip = d3.select("#tooltip");
+      const { name } = event.target.__data__.properties;
+
+      tooltip
+        .style("left", `${event.x - 5}px`)
+        .style("top", `${event.y + 20}px`)
+        .style("opacity", 0.8)
+        .text(`${name}`);
+    };
+
+    const onMouseOut = () => {
+      const tooltip = d3.select("#tooltip")
+
+      tooltip.style("opacity", 0)
+    }
+
     svg.call(drag);
     svg.call(zoom);
 
@@ -77,7 +94,8 @@ const RenderWorld = () => {
         .append("path")
         .attr("class", "country")
         .attr("d", path)
-        .on("mouseover", onMouseOver)
+        .on("mousemove", onMouseMove)
+        .on("mouseout", onMouseOut)
     });
 
     // Cleanup on unmounting component
