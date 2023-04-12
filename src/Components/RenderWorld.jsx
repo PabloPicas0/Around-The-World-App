@@ -35,7 +35,6 @@ const RenderWorld = () => {
       projection.rotate([x + e.dx * sens, y - e.dy * sens]);
 
       svg.selectAll("path").attr("d", path);
-      console.log(projection.rotate());
     });
 
     const zoom = d3.zoom().on("zoom", (e) => {
@@ -77,7 +76,7 @@ const RenderWorld = () => {
       projection.rotate([-coords[0], -coords[1]]);
 
       // Redraw the globe
-      svg.selectAll("path").attr("d", path);
+      svg.selectAll("path").transition().duration(2000).attr("d", path);
     };
 
     svg.call(drag);
@@ -90,8 +89,6 @@ const RenderWorld = () => {
       .attr("id", "container");
 
     const globe = container.append("g").attr("class", "globe");
-
-    // Creating new g element that will have all coutries path
     const countries = container.append("g").attr("class", "countries");
 
     // Adding two path elements thaht give outline and graticule
