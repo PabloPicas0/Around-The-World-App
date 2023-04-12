@@ -39,9 +39,19 @@ const RenderWorld = () => {
 
     const zoom = d3.zoom().on("zoom", (e) => {
       if (e.transform.k > 0.4 && e.transform.k < 5) {
-        projection.scale(230 * e.transform.k); // 230 is taken from default scale projection
+         d3.transition()
+           .duration(50)
+           .tween("zoom", function () {
+             const currentScale = projection.scale();
+             const nextScale = projection.scale(230 * e.transform.k).scale();
 
-        svg.selectAll("path").attr("d", path);
+             const interp = d3.interpolate(currentScale, nextScale);
+             
+             return function (t) {
+               projection.scale(interp(t));
+               svg.selectAll("path").attr("d", path);
+             };
+           });
       } else {
         const k = e.transform.k <= 0.4 ? 0.4 : 5;
         e.transform.k = k;
@@ -66,17 +76,27 @@ const RenderWorld = () => {
     };
 
     const onClick = (e) => {
-      // Get the clicked point
+      // Get the clicked point px
       const [x, y] = d3.pointer(e);
 
       // Convert the clicked point to coordinates
-      const coords = projection.invert([x, y]);
+      const clickCoords = projection.invert([x, y]);
 
-      // Update the rotation to the opposite of the clicked point's coordinates
-      projection.rotate([-coords[0], -coords[1]]);
+      // Create transition on each click
+      d3.transition()
+        .duration(1000)
+        .tween("rotate", function () {
+          const currentCoords = projection.rotate();
+          const nextCoords = projection.rotate([-clickCoords[0], -clickCoords[1]]).rotate();
 
-      // Redraw the globe
-      svg.selectAll("path").transition().duration(2000).attr("d", path);
+          const interp = d3.geoInterpolate(currentCoords, nextCoords);
+
+          // Redraw the globe
+          return function (t) {
+            projection.rotate(interp(t));
+            svg.selectAll("path").attr("d", path);
+          };
+        });
     };
 
     svg.call(drag);
