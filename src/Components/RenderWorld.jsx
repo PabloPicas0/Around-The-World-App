@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useParams } from "../Context/context";
 
+import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/mouseFn";
+
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-import { onMouseDown, onMouseMove, onMouseOut } from "../Context/mouseFn";
 
 // Dimmensions for svg element
 const w = 960;
@@ -26,17 +27,21 @@ const RenderWorld = () => {
     const svg = d3.select(svgRef.current);
 
     // Drag method on svg element
-    const drag = d3.drag().on("drag", (e) => {
-      // projection.rotate() give us array with x, y, z coordinates
-      const [x, y] = projection.rotate();
-      const sens = 80 / projection.scale();
+    const drag = d3
+      .drag()
+      .on("drag", (e) => {
+        // projection.rotate() give us array with x, y, z coordinates
+        const [x, y] = projection.rotate();
+        const sens = 80 / projection.scale();
 
-      // We are changing projection coordinates taking old coords
-      // And adding ammount of x and y from cursor on drag event
-      projection.rotate([x + e.dx * sens, y - e.dy * sens]);
+        // We are changing projection coordinates taking old coords
+        // And adding ammount of x and y from cursor on drag event
+        projection.rotate([x + e.dx * sens, y - e.dy * sens]);
 
-      svg.selectAll("path").attr("d", path);
-    });
+        svg.selectAll("path").attr("d", path);
+      })
+      .on("start", onMouseDown)
+      .on("end", onMouseUp);
 
     const zoom = d3.zoom().on("zoom", (e) => {
       if (e.transform.k > 0.4 && e.transform.k < 5) {

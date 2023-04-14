@@ -18,5 +18,11 @@ export const onMouseOut = () => {
 };
 
 export const onMouseDown = () => {
-    let svgCursor = document.querySelector("svg").style
-}
+  const svgCursor = document.querySelector("svg").style;
+  svgCursor.cursor = "grabbing";
+};
+
+export const onMouseUp = () => {
+  const svgCursor = document.querySelector("svg").style;
+  svgCursor.cursor = "grab";
+};
