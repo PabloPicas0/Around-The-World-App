@@ -16,6 +16,8 @@
   stroke: var(--main-white);
   stroke-width: 0.5px;
   stroke-linejoin: round;
+  transition: fill 130ms ease-in-out;
+  cursor: pointer;
 }
 
 .country:hover {

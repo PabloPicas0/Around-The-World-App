@@ -1,13 +1,16 @@
 import RenderWorld from "./Components/RenderWorld";
 import Navbar from "./Components/Navbar";
+import { ParamsProvider } from "./Context/context";
 
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <RenderWorld />
+      <ParamsProvider>
+        <Navbar />
+        <RenderWorld />
+      </ParamsProvider>
     </>
   );
 }

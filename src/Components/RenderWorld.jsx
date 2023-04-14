@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useParams } from "../Context/context";
 
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-
-const url = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
+import { onMouseDown, onMouseMove, onMouseOut } from "../Context/mouseFn";
 
 // Dimmensions for svg element
 const w = 960;
@@ -12,6 +12,7 @@ const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
 const RenderWorld = () => {
   const svgRef = useRef(null);
+  const countryParams = useParams();
 
   // Useful source documentation about crating world map
   // Source: https://observablehq.com/@d3/world-map-svg
@@ -39,41 +40,24 @@ const RenderWorld = () => {
 
     const zoom = d3.zoom().on("zoom", (e) => {
       if (e.transform.k > 0.4 && e.transform.k < 5) {
-         d3.transition()
-           .duration(50)
-           .tween("zoom", function () {
-             const currentScale = projection.scale();
-             const nextScale = projection.scale(230 * e.transform.k).scale();
+        d3.transition()
+          .duration(50)
+          .tween("zoom", function () {
+            const currentScale = projection.scale();
+            const nextScale = projection.scale(230 * e.transform.k).scale();
 
-             const interp = d3.interpolate(currentScale, nextScale);
-             
-             return function (t) {
-               projection.scale(interp(t));
-               svg.selectAll("path").attr("d", path);
-             };
-           });
+            const interp = d3.interpolate(currentScale, nextScale);
+
+            return function (t) {
+              projection.scale(interp(t));
+              svg.selectAll("path").attr("d", path);
+            };
+          });
       } else {
         const k = e.transform.k <= 0.4 ? 0.4 : 5;
         e.transform.k = k;
       }
     });
-
-    const onMouseMove = (event) => {
-      const tooltip = d3.select("#tooltip");
-      const { name } = event.target.__data__.properties;
-
-      tooltip
-        .style("left", `${event.x - 5}px`)
-        .style("top", `${event.y + 20}px`)
-        .style("opacity", 0.8)
-        .text(`${name}`);
-    };
-
-    const onMouseOut = () => {
-      const tooltip = d3.select("#tooltip");
-
-      tooltip.style("opacity", 0);
-    };
 
     const onClick = (e) => {
       // Get the clicked point px
@@ -115,8 +99,8 @@ const RenderWorld = () => {
     globe.append("path").datum(outline).attr("class", "sphere").attr("d", path);
     globe.append("path").datum(graticule).attr("class", "graticule").attr("d", path);
 
-    d3.json(url).then((response) => {
-      const geojsonCountries = feature(response, response.objects.countries);
+    if (countryParams) {
+      const geojsonCountries = feature(countryParams, countryParams.objects.countries);
 
       // After fetching data we create path elements in countries g elemnt
       countries
@@ -129,13 +113,13 @@ const RenderWorld = () => {
         .on("mousemove", onMouseMove)
         .on("mouseout", onMouseOut)
         .on("click", onClick);
-    });
+    }
 
     // Cleanup on unmounting component
     return () => {
       svg.select("#container").remove();
     };
-  }, []);
+  }, [countryParams]);
 
   return (
     <>
