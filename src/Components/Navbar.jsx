@@ -35,8 +35,8 @@ const Navbar = () => {
         renderInput={(params) => <TextField {...params} label="Find Country" />}>
         search
       </Autocomplete>
-      <Typography>Country name</Typography>
-      <Box>reset</Box>
+      <Typography className="country-name" variant="h6">Country name</Typography>
+      <Box>Reset</Box>
     </Stack>
   );
 };

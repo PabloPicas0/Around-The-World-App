@@ -65,6 +65,10 @@ const RenderWorld = () => {
     });
 
     const onClick = (e) => {
+      const country = d3.select(".country-name")
+      const { name } = e.target.__data__.properties;
+      country.text(name)
+      
       // Get the clicked point px
       const [x, y] = d3.pointer(e);
 
