@@ -18,7 +18,7 @@ export const ParamsProvider = ({ children }) => {
   }, []);
 
   return (
-    <context.Provider value={countryData}>
+    <context.Provider value={{countryData}}>
         {children}
     </context.Provider>
   )

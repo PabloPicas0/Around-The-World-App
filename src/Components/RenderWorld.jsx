@@ -13,7 +13,7 @@ const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
 const RenderWorld = () => {
   const svgRef = useRef(null);
-  const countryParams = useParams();
+  const { countryData } = useParams();
 
   // Useful source documentation about crating world map
   // Source: https://observablehq.com/@d3/world-map-svg
@@ -104,8 +104,8 @@ const RenderWorld = () => {
     globe.append("path").datum(outline).attr("class", "sphere").attr("d", path);
     globe.append("path").datum(graticule).attr("class", "graticule").attr("d", path);
 
-    if (countryParams) {
-      const geojsonCountries = feature(countryParams, countryParams.objects.countries);
+    if (countryData) {
+      const geojsonCountries = feature(countryData, countryData.objects.countries);
 
       // After fetching data we create path elements in countries g elemnt
       countries
@@ -124,11 +124,11 @@ const RenderWorld = () => {
     return () => {
       svg.select("#container").remove();
     };
-  }, [countryParams]);
+  }, [countryData]);
 
   return (
     <>
-      <svg ref={svgRef} width={w} height={h}></svg>
+      <svg ref={svgRef} width={w} height={h} id="world-map"></svg>
       <div id="tooltip"></div>
     </>
   );

@@ -18,11 +18,11 @@ export const onMouseOut = () => {
 };
 
 export const onMouseDown = () => {
-  const svgCursor = document.querySelector("svg").style;
+  const svgCursor = document.querySelector("#world-map").style;
   svgCursor.cursor = "grabbing";
 };
 
 export const onMouseUp = () => {
-  const svgCursor = document.querySelector("svg").style;
+  const svgCursor = document.querySelector("#world-map").style;
   svgCursor.cursor = "grab";
 };
