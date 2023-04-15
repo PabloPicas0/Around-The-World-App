@@ -11,16 +11,16 @@ const w = 960;
 const h = 600;
 const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
+// Useful source documentation about crating world map
+// Source: https://observablehq.com/@d3/world-map-svg
+const outline = { type: "Sphere" };
+const graticule = d3.geoGraticule10();
+const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
+const path = d3.geoPath(projection);
+
 const RenderWorld = () => {
   const svgRef = useRef(null);
   const { countryData } = useParams();
-
-  // Useful source documentation about crating world map
-  // Source: https://observablehq.com/@d3/world-map-svg
-  const outline = { type: "Sphere" };
-  const graticule = d3.geoGraticule10();
-  const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
-  const path = d3.geoPath(projection);
 
   useEffect(() => {
     // Selected svg elemnt using d3 and react ref
