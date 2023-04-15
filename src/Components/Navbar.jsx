@@ -32,10 +32,11 @@ const Navbar = () => {
         id="select-box"
         sx={{ width: 280 }}
         options={handleOption()}
-        renderInput={(params) => <TextField {...params} label="Find Country" />}>
-        search
-      </Autocomplete>
-      <Typography className="country-name" variant="h6">Country name</Typography>
+        renderInput={(params) => <TextField {...params} label="Find Country" />}
+      />
+      <Typography className="country-name" variant="h6">
+        Country name
+      </Typography>
       <Box>Reset</Box>
     </Stack>
   );
