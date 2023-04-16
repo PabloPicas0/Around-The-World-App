@@ -118,6 +118,7 @@ const RenderWorld = () => {
         .enter()
         .append("path")
         .attr("class", "country")
+        .attr("id", (el) => el.properties.name.replace(/\s/g, "").toLowerCase())
         .attr("d", path)
         .on("mousemove", onMouseMove)
         .on("mouseout", onMouseOut)
