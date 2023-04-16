@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 const url = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
@@ -11,6 +11,8 @@ export const useParams = () => {
 export const ParamsProvider = ({ children }) => {
   const [countryData, setCountryData] = useState(null);
 
+  const svgRef = useRef(null);
+
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
@@ -18,7 +20,7 @@ export const ParamsProvider = ({ children }) => {
   }, []);
 
   return (
-    <context.Provider value={{countryData}}>
+    <context.Provider value={{countryData, svgRef}}>
         {children}
     </context.Provider>
   )

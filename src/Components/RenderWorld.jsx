@@ -15,12 +15,11 @@ const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 // Source: https://observablehq.com/@d3/world-map-svg
 const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
-const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
-const path = d3.geoPath(projection);
+export const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
+export const path = d3.geoPath(projection);
 
 const RenderWorld = () => {
-  const svgRef = useRef(null);
-  const { countryData } = useParams();
+  const { countryData, svgRef } = useParams();
 
   useEffect(() => {
     // Selected svg elemnt using d3 and react ref
@@ -65,10 +64,10 @@ const RenderWorld = () => {
     });
 
     const onClick = (e) => {
-      const country = d3.select(".country-name")
+      const country = d3.select(".country-name");
       const { name } = e.target.__data__.properties;
-      country.text(name)
-      
+      country.text(name);
+
       // Get the clicked point px
       const [x, y] = d3.pointer(e);
 
