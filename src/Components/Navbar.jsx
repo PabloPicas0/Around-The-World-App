@@ -29,6 +29,8 @@ const Navbar = () => {
     return ["Loading..."];
   };
 
+  // Bug under this function !
+  // Some countries return array of coordinates instead of coordinates
   const handleChange = (e) => {
     if (e.target.textContent !== "") {
       const svg = d3.select(svgRef.current);
