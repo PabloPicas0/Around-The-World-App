@@ -29,8 +29,6 @@ const Navbar = () => {
     return ["Loading..."];
   };
 
-  // Bug under this function !
-  // Some countries return array of coordinates instead of coordinates
   const handleChange = (e) => {
     if (e.target.textContent !== "") {
       const svg = d3.select(svgRef.current);
@@ -39,9 +37,10 @@ const Navbar = () => {
       const selectedCountry = d3.select(`#${countryName}`);
 
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
-      const [x, y] = coordinates[0][0];
 
-
+      // Some countries return array of coordinates instead of coordinates
+      // This abomination fixes it
+      const [x, y] = typeof coordinates[0][0][0] === "object" ? coordinates[1][0][0] : coordinates[0][1];
 
       d3.transition()
         .duration(1000)
