@@ -14,9 +14,16 @@ export const ParamsProvider = ({ children }) => {
   const svgRef = useRef(null);
 
   useEffect(() => {
-    fetch(url)
+    const controller = new AbortController()
+    const signal = controller.signal
+    
+    fetch(url, { signal })
       .then((response) => response.json())
       .then((data) => setCountryData(data));
+
+      return () => {
+        controller.abort()
+      }
   }, []);
 
   return (
