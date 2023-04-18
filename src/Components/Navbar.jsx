@@ -32,10 +32,13 @@ const Navbar = () => {
   const handleChange = (e) => {
     if (e.target.textContent !== "") {
       const svg = d3.select(svgRef.current);
+      const country = d3.select(".country-name")
+      
+      country.text(e.target.textContent)
 
       const countryName = e.target.textContent.replace(/\W/g, "");
       const selectedCountry = d3.select(`#${countryName}`);
-
+      
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
 
       // Some countries return array of coordinates instead of coordinates
