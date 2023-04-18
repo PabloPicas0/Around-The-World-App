@@ -31,6 +31,10 @@
   stroke-width: 1px;
 }
 
+.checked {
+  fill: var(--country-hover);
+}
+
 #tooltip {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);

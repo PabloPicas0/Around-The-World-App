@@ -29,15 +29,22 @@ const Navbar = () => {
     return ["Loading..."];
   };
 
+  // TODO:
+  // Add to functions drag and click deleting checked class on element 
   const handleChange = (e) => {
     if (e.target.textContent !== "") {
       const svg = d3.select(svgRef.current);
-      const country = d3.select(".country-name")
+      const countryNameBox = d3.select(".country-name")
+      const prevCountry = d3.select(".checked")
       
-      country.text(e.target.textContent)
+      prevCountry.classed("checked", false);
+      countryNameBox.text(e.target.textContent);
+
 
       const countryName = e.target.textContent.replace(/\W/g, "");
       const selectedCountry = d3.select(`#${countryName}`);
+
+      selectedCountry.classed("checked", true)
       
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
 
