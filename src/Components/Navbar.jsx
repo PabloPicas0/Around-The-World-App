@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   // TODO:
-  // Add to functions drag and click deleting checked class on element 
+  // Bug: when you click enter function doesn't fire
   const handleChange = (e) => {
     if (e.target.textContent !== "") {
       const svg = d3.select(svgRef.current);
@@ -39,7 +39,6 @@ const Navbar = () => {
       
       prevCountry.classed("checked", false);
       countryNameBox.text(e.target.textContent);
-
 
       const countryName = e.target.textContent.replace(/\W/g, "");
       const selectedCountry = d3.select(`#${countryName}`);

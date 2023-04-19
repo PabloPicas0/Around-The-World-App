@@ -74,8 +74,6 @@ const RenderWorld = () => {
       nextCountry.classed("checked", true)
       countryNameBox.text(name);
 
-      console.log(e.target.id)
-
       // Get the clicked point px
       const [x, y] = d3.pointer(e);
 
