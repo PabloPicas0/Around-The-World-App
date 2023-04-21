@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Stack, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, Stack, TextField, Typography } from "@mui/material";
 
 import { useParams } from "../Context/context";
 
@@ -64,6 +64,29 @@ const Navbar = () => {
       });
   };
 
+  const handleReset = () => {
+    const svg = d3.select(svgRef.current);
+    const checkedCountry = d3.select(".checked");
+    const countryNameBox = d3.select(".country-name");
+
+    checkedCountry.classed("checked", false);
+    countryNameBox.text("Country Name");
+
+    d3.transition()
+      .duration(1000)
+      .tween("reset", function () {
+        const currentCoords = projection.rotate();
+        const nextCoords = projection.rotate([0, -20]).rotate();
+
+        const interp = d3.geoInterpolate(currentCoords, nextCoords);
+
+        return function (t) {
+          projection.rotate(interp(t));
+          svg.selectAll("path").attr("d", path);
+        };
+      });
+  };
+
   return (
     <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
       <Autocomplete
@@ -76,7 +99,9 @@ const Navbar = () => {
       <Typography className="country-name" variant="h6">
         Country name
       </Typography>
-      <Box>Reset</Box>
+      <Button variant="outlined" onClick={handleReset}>
+        Reset
+      </Button>
     </Stack>
   );
 };

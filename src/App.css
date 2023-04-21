@@ -35,6 +35,12 @@
   fill: var(--country-hover);
 }
 
+.country-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #tooltip {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
