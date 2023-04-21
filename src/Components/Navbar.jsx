@@ -30,38 +30,42 @@ const Navbar = () => {
   };
 
   const handleChange = (event, value) => {
-    const svg = d3.select(svgRef.current);
-    const countryNameBox = d3.select(".country-name");
-    const prevCountry = d3.select(".checked");
+    const { type } = event;
 
-    prevCountry.classed("checked", false);
-    countryNameBox.text(value);
+    if ((type === "click" && value !== "") || type === "keydown") {
+      const svg = d3.select(svgRef.current);
+      const countryNameBox = d3.select(".country-name");
+      const prevCountry = d3.select(".checked");
 
-    const countryName = value.replace(/\W/g, "");
+      prevCountry.classed("checked", false);
+      countryNameBox.text(value);
 
-    const selectedCountry = d3.select(`#${countryName}`);
+      const countryName = value.replace(/\W/g, "");
 
-    selectedCountry.classed("checked", true);
+      const selectedCountry = d3.select(`#${countryName}`);
 
-    const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
+      selectedCountry.classed("checked", true);
 
-    // Some countries return array of coordinates instead of coordinates
-    // This abomination fixes it
-    const [x, y] = typeof coordinates[0][0][0] === "object" ? coordinates[1][0][0] : coordinates[0][1];
+      const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
 
-    d3.transition()
-      .duration(1000)
-      .tween("goTo", function () {
-        const currentCoords = projection.rotate();
-        const nextCoords = projection.rotate([-x, -y]).rotate();
+      // Some countries return array of coordinates instead of coordinates
+      // This abomination fixes it
+      const [x, y] = typeof coordinates[0][0][0] === "object" ? coordinates[1][0][0] : coordinates[0][1];
 
-        const interp = d3.geoInterpolate(currentCoords, nextCoords);
+      d3.transition()
+        .duration(1000)
+        .tween("goTo", function () {
+          const currentCoords = projection.rotate();
+          const nextCoords = projection.rotate([-x, -y]).rotate();
 
-        return function (t) {
-          projection.rotate(interp(t));
-          svg.selectAll("path").attr("d", path);
-        };
-      });
+          const interp = d3.geoInterpolate(currentCoords, nextCoords);
+
+          return function (t) {
+            projection.rotate(interp(t));
+            svg.selectAll("path").attr("d", path);
+          };
+        });
+    }
   };
 
   const handleReset = () => {
