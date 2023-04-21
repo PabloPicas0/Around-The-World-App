@@ -34,17 +34,17 @@ const Navbar = () => {
   const handleChange = (e) => {
     if (e.target.textContent !== "") {
       const svg = d3.select(svgRef.current);
-      const countryNameBox = d3.select(".country-name")
-      const prevCountry = d3.select(".checked")
-      
+      const countryNameBox = d3.select(".country-name");
+      const prevCountry = d3.select(".checked");
+
       prevCountry.classed("checked", false);
       countryNameBox.text(e.target.textContent);
 
       const countryName = e.target.textContent.replace(/\W/g, "");
       const selectedCountry = d3.select(`#${countryName}`);
 
-      selectedCountry.classed("checked", true)
-      
+      selectedCountry.classed("checked", true);
+
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
 
       // Some countries return array of coordinates instead of coordinates

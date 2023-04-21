@@ -6,6 +6,9 @@ import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/mous
 import * as d3 from "d3";
 import { feature } from "topojson-client";
 
+export const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
+export const path = d3.geoPath(projection);
+
 // Dimmensions for svg element
 const w = 960;
 const h = 600;
@@ -15,8 +18,6 @@ const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 // Source: https://observablehq.com/@d3/world-map-svg
 const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
-export const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
-export const path = d3.geoPath(projection);
 
 const RenderWorld = () => {
   const { countryData, svgRef } = useParams();
