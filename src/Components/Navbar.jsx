@@ -1,4 +1,5 @@
 import { Autocomplete, Button, Stack, TextField, Typography } from "@mui/material";
+import { useRef } from "react";
 
 import { useParams } from "../Context/context";
 
@@ -7,6 +8,8 @@ import { path, projection } from "./RenderWorld";
 
 const Navbar = () => {
   const { countryData, svgRef } = useParams();
+
+  const autoComplete = useRef(null);
 
   const handleOption = () => {
     if (countryData) {
@@ -72,9 +75,11 @@ const Navbar = () => {
     const svg = d3.select(svgRef.current);
     const checkedCountry = d3.select(".checked");
     const countryNameBox = d3.select(".country-name");
+    const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
 
     checkedCountry.classed("checked", false);
     countryNameBox.text("Country Name");
+    if(clearButton) clearButton.click()
 
     d3.transition()
       .duration(1000)
@@ -94,6 +99,7 @@ const Navbar = () => {
   return (
     <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
       <Autocomplete
+        ref={autoComplete}
         id="select-box"
         sx={{ width: 280 }}
         options={handleOption()}
@@ -101,7 +107,7 @@ const Navbar = () => {
         onInputChange={handleChange}
       />
       <Typography className="country-name" variant="h6">
-        Country name
+        Country Name
       </Typography>
       <Button variant="outlined" onClick={handleReset}>
         Reset
