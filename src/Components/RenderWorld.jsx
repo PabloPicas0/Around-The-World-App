@@ -139,10 +139,10 @@ const RenderWorld = () => {
   }, [countryData]);
 
   return (
-    <>
+    <div className="world-wrapper">
       <svg ref={svgRef} width={w} height={h} id="world-map"></svg>
       <div id="tooltip"></div>
-    </>
+    </div>
   );
 };
 
