@@ -83,9 +83,6 @@ const Navbar = () => {
     if (clearButton) clearButton.click();
     transform.k = 1
 
-    console.log(transform.k);
-    //BUG
-    // K value from zoom event is not reseted
     d3.transition()
       .duration(1000)
       .tween("reset", function () {
