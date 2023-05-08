@@ -81,16 +81,24 @@ const Navbar = () => {
     countryNameBox.text("Country Name");
     if(clearButton) clearButton.click()
 
+    svg.on("zoom", (e) => console.log(e))
+
+    //BUG
+    // K value from zoom event is not reseted
     d3.transition()
       .duration(1000)
       .tween("reset", function () {
         const currentCoords = projection.rotate();
-        const nextCoords = projection.rotate([0, -20]).rotate();
+        const defaultCoords = projection.rotate([0, -20]).rotate();
 
-        const interp = d3.geoInterpolate(currentCoords, nextCoords);
+        const currentScale = projection.scale()
+        const defaultScale = projection.scale(230).scale()
+
+        const interpCoords = d3.geoInterpolate(currentCoords, defaultCoords);
+        const interpScale = d3.interpolate(currentScale, defaultScale)
 
         return function (t) {
-          projection.rotate(interp(t));
+          projection.rotate(interpCoords(t)).scale(interpScale(t));
           svg.selectAll("path").attr("d", path);
         };
       });
