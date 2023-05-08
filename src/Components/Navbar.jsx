@@ -103,7 +103,7 @@ const Navbar = () => {
   };
 
   return (
-    <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
+    <Stack direction={"row"} justifyContent={"space-between"}>
       <Autocomplete
         ref={autoComplete}
         id="select-box"
@@ -112,7 +112,7 @@ const Navbar = () => {
         renderInput={(params) => <TextField {...params} label="Find Country" />}
         onInputChange={handleChange}
       />
-      <Typography className="country-name" variant="h6">
+      <Typography className="country-name" variant="h6" style={{marginRight: "120px"}}>
         Country Name
       </Typography>
       <Button variant="outlined" onClick={handleReset}>
