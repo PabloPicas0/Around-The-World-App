@@ -81,7 +81,7 @@ const Navbar = () => {
     checkedCountry.classed("checked", false);
     countryNameBox.text("Country Name");
     if (clearButton) clearButton.click();
-    transform.k = 1
+    transform.k = 1;
 
     d3.transition()
       .duration(1000)
@@ -103,21 +103,23 @@ const Navbar = () => {
   };
 
   return (
-    <Stack direction={"row"} justifyContent={"space-between"} paddingX={"40px"} paddingTop={"10px"}>
-      <Autocomplete
-        ref={autoComplete}
-        id="select-box"
-        sx={{ width: 280 }}
-        options={handleOption()}
-        renderInput={(params) => <TextField {...params} label="Find Country" />}
-        onInputChange={handleChange}
-      />
-      <Typography className="country-name" variant="h6" style={{marginRight: "145px"}}>
+    <Stack direction={"row"} paddingX={"40px"} paddingTop={"10px"} gap={"500px"}>
+      <div style={{display: "flex", gap: "20px"}}>
+        <Autocomplete
+          ref={autoComplete}
+          id="select-box"
+          sx={{ width: 280 }}
+          options={handleOption()}
+          renderInput={(params) => <TextField {...params} label="Find Country" />}
+          onInputChange={handleChange}
+        />
+        <Button variant="outlined" onClick={handleReset}>
+          Reset
+        </Button>
+      </div>
+      <Typography className="country-name" variant="h6">
         Country Name
       </Typography>
-      <Button variant="outlined" onClick={handleReset}>
-        Reset
-      </Button>
     </Stack>
   );
 };
