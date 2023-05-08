@@ -76,13 +76,14 @@ const Navbar = () => {
     const checkedCountry = d3.select(".checked");
     const countryNameBox = d3.select(".country-name");
     const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
+    const transform = d3.zoomTransform(svg.node());
 
     checkedCountry.classed("checked", false);
     countryNameBox.text("Country Name");
-    if(clearButton) clearButton.click()
+    if (clearButton) clearButton.click();
+    transform.k = 1
 
-    svg.on("zoom", (e) => console.log(e))
-
+    console.log(transform.k);
     //BUG
     // K value from zoom event is not reseted
     d3.transition()
@@ -91,11 +92,11 @@ const Navbar = () => {
         const currentCoords = projection.rotate();
         const defaultCoords = projection.rotate([0, -20]).rotate();
 
-        const currentScale = projection.scale()
-        const defaultScale = projection.scale(230).scale()
+        const currentScale = projection.scale();
+        const defaultScale = projection.scale(230).scale();
 
         const interpCoords = d3.geoInterpolate(currentCoords, defaultCoords);
-        const interpScale = d3.interpolate(currentScale, defaultScale)
+        const interpScale = d3.interpolate(currentScale, defaultScale);
 
         return function (t) {
           projection.rotate(interpCoords(t)).scale(interpScale(t));

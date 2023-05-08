@@ -44,7 +44,6 @@ const RenderWorld = () => {
       .on("end", onMouseUp);
 
     const zoom = d3.zoom().on("zoom", (e) => {
-      console.log(e)
       // zoom, 230, e.transform.k, svg
       if (e.transform.k > 0.4 && e.transform.k < 5) {
         d3.transition()
