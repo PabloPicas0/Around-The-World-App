@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+
 import { useParams } from "../Context/context";
 
-import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/mouseFn";
+import { fetchCountryInfo, onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/OtherFn";
 
 import * as d3 from "d3";
 import { feature } from "topojson-client";
@@ -20,7 +21,7 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, svgRef } = useParams();
+  const { countryData, svgRef, setNews } = useParams();
 
   useEffect(() => {
     // Selected svg elemnt using d3 and react ref
@@ -97,6 +98,8 @@ const RenderWorld = () => {
             svg.selectAll("path").attr("d", path);
           };
         });
+
+        fetchCountryInfo(e.target.id)
     };
 
     svg.call(drag);

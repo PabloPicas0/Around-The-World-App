@@ -10,24 +10,25 @@ export const useParams = () => {
 
 export const ParamsProvider = ({ children }) => {
   const [countryData, setCountryData] = useState(null);
+  const [news, setNews] = useState(null);
 
   const svgRef = useRef(null);
 
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
+    const controller = new AbortController();
+    const signal = controller.signal;
     
     fetch(url, { signal })
       .then((response) => response.json())
       .then((data) => setCountryData(data));
 
       return () => {
-        controller.abort()
+        controller.abort();
       }
   }, []);
 
   return (
-    <context.Provider value={{countryData, svgRef}}>
+    <context.Provider value={{countryData, svgRef, news, setNews}}>
         {children}
     </context.Provider>
   )
