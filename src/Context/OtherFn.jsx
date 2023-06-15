@@ -26,12 +26,3 @@ export const onMouseUp = () => {
   const svgCursor = document.querySelector("#world-map").style;
   svgCursor.cursor = "grab";
 };
-
-export const fetchCountryInfo = (countryName) => {
-  const infoUrl = ``;
-  const fallbackQoute = "https://api.themotivate365.com/stoic-quote";
-
-  return fetch(infoUrl)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-};

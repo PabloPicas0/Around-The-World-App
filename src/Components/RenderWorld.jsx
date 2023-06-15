@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useParams } from "../Context/context";
 
-import { fetchCountryInfo, onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/OtherFn";
+import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/OtherFn";
 
 import * as d3 from "d3";
 import { feature } from "topojson-client";
@@ -21,7 +21,7 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, svgRef, setNews } = useParams();
+  const { countryData, svgRef, handleNewsFetch } = useParams();
 
   useEffect(() => {
     // Selected svg elemnt using d3 and react ref
@@ -99,7 +99,11 @@ const RenderWorld = () => {
           };
         });
 
-        fetchCountryInfo(e.target.id)
+        // TODO
+        // Check if the id of the clicked country is the same as this fetched one
+        // If they are the same display info about them
+        // Possible to fetch all countries and after click search through them to find sane id 
+        handleNewsFetch(e.target.id);
     };
 
     svg.call(drag);

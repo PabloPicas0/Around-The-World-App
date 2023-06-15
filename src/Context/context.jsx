@@ -14,11 +14,17 @@ export const ParamsProvider = ({ children }) => {
 
   const svgRef = useRef(null);
 
-  const handleNewsFetch = (country) => {
-    fetch(`https://countryinfoapi.com/api/countries/name/${country}`)
+  const handleNewsFetch = (countryName) => {
+    const infoUrl = `https://countryinfoapi.com/api/countries/name/${countryName}`;
+    const fallbackQoute = "https://api.themotivate365.com/stoic-quote";
+
+    fetch(infoUrl)
       .then((res) => res.json())
-      .then((data) => console.log(data));
-  }
+      .then((data) => {
+        setNews(data)
+        console.log(data)
+      });
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,7 +40,7 @@ export const ParamsProvider = ({ children }) => {
   }, []);
 
   return (
-    <context.Provider value={{countryData, svgRef, news, setNews}}>
+    <context.Provider value={{countryData, svgRef, news, handleNewsFetch}}>
         {children}
     </context.Provider>
   )
