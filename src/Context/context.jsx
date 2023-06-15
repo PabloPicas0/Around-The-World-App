@@ -14,6 +14,12 @@ export const ParamsProvider = ({ children }) => {
 
   const svgRef = useRef(null);
 
+  const handleNewsFetch = (country) => {
+    fetch(`https://countryinfoapi.com/api/countries/name/${country}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
