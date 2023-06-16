@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 const url = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
-    const infoUrl = `https://countryinfoapi.com/api/countries`;
-    const fallbackQoute = "https://api.themotivate365.com/stoic-quote";
+const infoUrl = "https://countryinfoapi.com/api/countries";
+const fallbackQoute = "https://api.themotivate365.com/stoic-quote";
 
 const context = createContext();
 
@@ -37,7 +37,7 @@ export const ParamsProvider = ({ children }) => {
   }, []);
 
   return (
-    <context.Provider value={{ countryData, svgRef, aboutCountries, basicInfo, setBasicInfo}}>
+    <context.Provider value={{ countryData, svgRef, aboutCountries, basicInfo, setBasicInfo }}>
       {children}
     </context.Provider>
   );

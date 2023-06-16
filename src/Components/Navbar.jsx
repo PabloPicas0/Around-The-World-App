@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Stack, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, Paper, Stack, TextField, Typography } from "@mui/material";
 import { useRef } from "react";
 
 import { useParams } from "../Context/context";
@@ -103,24 +103,26 @@ const Navbar = () => {
   };
 
   return (
-    <Stack direction={"row"} paddingX={"40px"} paddingTop={"10px"} gap={"500px"}>
-      <div style={{display: "flex", gap: "20px"}}>
-        <Autocomplete
-          ref={autoComplete}
-          id="select-box"
-          sx={{ width: 280 }}
-          options={handleOption()}
-          renderInput={(params) => <TextField {...params} label="Find Country" />}
-          onInputChange={handleChange}
-        />
-        <Button variant="outlined" onClick={handleReset}>
-          Reset
-        </Button>
-      </div>
-      <Typography className="country-name" variant="h6">
-        Country Name
-      </Typography>
-    </Stack>
+    <Paper>
+      <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} gap={"500px"}>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <Autocomplete
+            ref={autoComplete}
+            id="select-box"
+            sx={{ width: 280 }}
+            options={handleOption()}
+            renderInput={(params) => <TextField {...params} label="Find Country" />}
+            onInputChange={handleChange}
+          />
+          <Button variant="outlined" onClick={handleReset}>
+            Reset
+          </Button>
+        </div>
+        <Typography className="country-name" variant="h6">
+          Country Name
+        </Typography>
+      </Stack>
+    </Paper>
   );
 };
 

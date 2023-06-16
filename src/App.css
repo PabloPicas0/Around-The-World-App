@@ -45,6 +45,14 @@
   align-items: center;
 }
 
+.info-displayer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 20px 30px;
+}
+
 #tooltip {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
