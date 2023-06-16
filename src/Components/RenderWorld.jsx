@@ -21,7 +21,7 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, svgRef, handleNewsFetch } = useParams();
+  const { countryData, aboutCountries, svgRef, setBasicInfo } = useParams();
 
   useEffect(() => {
     // Selected svg elemnt using d3 and react ref
@@ -68,14 +68,19 @@ const RenderWorld = () => {
 
     const onClick = (e) => {
       const { name } = e.target.__data__.properties;
+      const { id } = e.target.__data__;
 
       const countryNameBox = d3.select(".country-name");
       const prevCountry = d3.select(".checked");
       const nextCountry = d3.select(`#${e.target.id}`);
 
-      prevCountry.classed("checked", false)
-      nextCountry.classed("checked", true)
+      prevCountry.classed("checked", false);
+      nextCountry.classed("checked", true);
       countryNameBox.text(name);
+
+      const findCountry = aboutCountries.find((country) => country.ccn3 === id);
+
+      setBasicInfo(findCountry)
 
       // Get the clicked point in px
       const [x, y] = d3.pointer(e);
@@ -98,12 +103,6 @@ const RenderWorld = () => {
             svg.selectAll("path").attr("d", path);
           };
         });
-
-        // TODO
-        // Check if the id of the clicked country is the same as this fetched one
-        // If they are the same display info about them
-        // Possible to fetch all countries and after click search through them to find sane id 
-        handleNewsFetch(e.target.id);
     };
 
     svg.call(drag);
