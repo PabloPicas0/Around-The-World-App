@@ -6,6 +6,11 @@ import { ParamsProvider } from "./Context/context";
 
 import "./App.css";
 
+// TODO
+// Sync search field with info api
+// Reset button resets DisplayInfo component too
+// Add slide animation for DisplayInfo component
+
 function App() {
   return (
     <>
