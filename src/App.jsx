@@ -8,6 +8,7 @@ import "./App.css";
 
 // TODO
 // Work on mobile version
+// Abstract styles 
 
 function App() {
   return (

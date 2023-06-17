@@ -1,10 +1,33 @@
-import { Autocomplete, Button, Paper, Stack, TextField, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Paper,
+  Stack,
+  TextField,
+  ThemeProvider,
+  Typography,
+  createTheme,
+} from "@mui/material";
+
 import { useRef } from "react";
 
 import { useParams } from "../Context/context";
 
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1100,
+      xl: 1536,
+    },
+  },
+});
 
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
@@ -113,26 +136,43 @@ const Navbar = () => {
   };
 
   return (
-    <Paper>
-      <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} position={"relative"}>
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Autocomplete
-            ref={autoComplete}
-            id="select-box"
-            sx={{ width: 280 }}
-            options={handleOption()}
-            renderInput={(params) => <TextField {...params} label="Find Country" />}
-            onInputChange={handleChange}
-          />
-          <Button variant="outlined" onClick={handleReset}>
-            Reset
-          </Button>
-        </div>
-        <Typography className="country-name" variant="h6" sx={{position: "absolute", left: "48%", top: 20, fontWeight: 600}}>
-          Country Name
-        </Typography>
-      </Stack>
-    </Paper>
+    <ThemeProvider theme={theme}>
+      <Paper>
+        <Stack
+          direction={"row"}
+          paddingX={"40px"}
+          paddingY={"10px"}
+          position={"relative"}
+          sx={{ justifyContent: { xs: "center", lg: "start" } }}>
+          <Box sx={{ display: "flex", gap: "20px", flexDirection: { xs: "column", sm: "row" } }}>
+            <Autocomplete
+              ref={autoComplete}
+              id="select-box"
+              sx={{ width: 280 }}
+              options={handleOption()}
+              renderInput={(params) => <TextField {...params} label="Find Country" />}
+              onInputChange={handleChange}
+            />
+            <Button variant="outlined" onClick={handleReset}>
+              Reset
+            </Button>
+          </Box>
+
+          <Typography
+            className="country-name"
+            variant="h6"
+            sx={{
+              position: "absolute",
+              left: "48%",
+              top: 20,
+              fontWeight: 600,
+              display: { xs: "none", lg: "flex" },
+            }}>
+            Country Name
+          </Typography>
+        </Stack>
+      </Paper>
+    </ThemeProvider>
   );
 };
 
