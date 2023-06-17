@@ -7,6 +7,8 @@ import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/Othe
 import * as d3 from "d3";
 import { feature } from "topojson-client";
 
+import { Box } from "@mui/system";
+
 export const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
 export const path = d3.geoPath(projection);
 
@@ -149,7 +151,7 @@ const RenderWorld = () => {
   return (
     <div className="world-wrapper">
       <svg ref={svgRef} width={w} height={h} id="world-map"></svg>
-      <div id="tooltip"></div>
+      <Box id="tooltip" sx={{display: {xs: "none", md: "block"}}}></Box>
     </div>
   );
 };
