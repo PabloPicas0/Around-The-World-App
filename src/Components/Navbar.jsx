@@ -123,7 +123,7 @@ const Navbar = () => {
         const defaultCoords = projection.rotate([0, -20]).rotate();
 
         const currentScale = projection.scale();
-        const defaultScale = projection.scale(230).scale();
+        const defaultScale = projection.scale(200).scale();
 
         const interpCoords = d3.geoInterpolate(currentCoords, defaultCoords);
         const interpScale = d3.interpolate(currentScale, defaultScale);

@@ -9,7 +9,7 @@ import { feature } from "topojson-client";
 
 import { Box } from "@mui/system";
 
-export const projection = d3.geoOrthographic().scale(230).center([0, 0]).rotate([0, -20]);
+export const projection = d3.geoOrthographic().scale(200).center([0, 0]).rotate([0, -20]);
 export const path = d3.geoPath(projection);
 
 // Dimmensions for svg element

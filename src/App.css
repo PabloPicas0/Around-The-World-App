@@ -68,3 +68,19 @@
 #world-map {
   cursor: grab;
 }
+
+@media (width < 1100px) {
+  .world-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(
+      100% - (132.5px + 60px)
+    ); /* 132.5px - height of navbar, 60px - additional space for mobile search bar  */
+    padding: 0;
+  }
+
+  svg {
+    height: 100%;
+  }
+}
