@@ -144,7 +144,7 @@ const Navbar = () => {
           paddingY={"10px"}
           position={"relative"}
           sx={{ justifyContent: { xs: "center", lg: "start" } }}>
-          <Box sx={{ display: "flex", gap: "20px", flexDirection: { xs: "column", sm: "row" } }}>
+          <Box sx={{ display: "flex", gap: "20px", flexDirection: {xs: "column", sm: "row"} }}>
             <Autocomplete
               ref={autoComplete}
               id="select-box"
