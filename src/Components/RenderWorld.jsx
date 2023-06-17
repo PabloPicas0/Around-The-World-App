@@ -73,14 +73,16 @@ const RenderWorld = () => {
       const countryNameBox = d3.select(".country-name");
       const prevCountry = d3.select(".checked");
       const nextCountry = d3.select(`#${e.target.id}`);
+      const displayInfo = d3.select(".info-displayer");
 
       prevCountry.classed("checked", false);
       nextCountry.classed("checked", true);
+      displayInfo.style("transform", "translateX(0px)");
       countryNameBox.text(name);
 
       const findCountry = aboutCountries.find((country) => country.ccn3 === id);
 
-      setBasicInfo(findCountry)
+      setBasicInfo(findCountry);
 
       // Get the clicked point in px
       const [x, y] = d3.pointer(e);

@@ -11,12 +11,14 @@ const DisplayInfo = () => {
     return new Intl.NumberFormat("en", { notation: "compact" }).format(number);
   };
 
-  const handleLanguages = (language = {test: 0}) => {
+  const handleLanguages = (language = { test: 0 }) => {
     return Object.entries(language);
-  }
+  };
 
   return (
-    <Paper className="info-displayer">
+    <Paper
+      className="info-displayer"
+      style={{ transform: "translateX(500px)", transition: "transform 250ms ease-in-out" }}>
       <aside>
         <h2 style={{ textAlign: "center" }}>About Country</h2>
         <Card sx={{ maxWidth: "400px" }}>

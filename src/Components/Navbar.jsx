@@ -77,7 +77,9 @@ const Navbar = () => {
     const countryNameBox = d3.select(".country-name");
     const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
     const transform = d3.zoomTransform(svg.node());
+    const displayInfo = d3.select(".info-displayer");
 
+    displayInfo.style("transform", "translateX(500px)");
     checkedCountry.classed("checked", false);
     countryNameBox.text("Country Name");
     if (clearButton) clearButton.click();
