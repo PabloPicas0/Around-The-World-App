@@ -7,7 +7,7 @@ import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
 
 const Navbar = () => {
-  const { countryData, svgRef } = useParams();
+  const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
 
   const autoComplete = useRef(null);
 
@@ -39,8 +39,10 @@ const Navbar = () => {
       const svg = d3.select(svgRef.current);
       const countryNameBox = d3.select(".country-name");
       const prevCountry = d3.select(".checked");
+      const displayInfo = d3.select(".info-displayer");
 
       prevCountry.classed("checked", false);
+      displayInfo.style("transform", "translate(0px)");
       countryNameBox.text(value);
 
       const countryName = value.replace(/\W/g, "");
@@ -48,6 +50,12 @@ const Navbar = () => {
       const selectedCountry = d3.select(`#${countryName}`);
 
       selectedCountry.classed("checked", true);
+
+      const { id } = selectedCountry.data()[0];
+
+      const findCountry = aboutCountries.find((country) => country.ccn3 === id);
+
+      setBasicInfo(findCountry);
 
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
 

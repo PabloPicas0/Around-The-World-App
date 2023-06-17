@@ -7,7 +7,6 @@ import { ParamsProvider } from "./Context/context";
 import "./App.css";
 
 // TODO
-// Sync search field with info api
 // Work on mobile version
 
 function App() {
