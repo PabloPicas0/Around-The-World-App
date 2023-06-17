@@ -34,7 +34,7 @@ const DisplayInfo = () => {
         <Card sx={{ maxWidth: "400px" }}>
           <CardContent>
             <Typography variant="h6" component={"p"}>
-              Country Name: {name}
+              Country: {name}
             </Typography>
             <Typography variant="h6">Capital: {capital}</Typography>
             <Typography variant="h6">

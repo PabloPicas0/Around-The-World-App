@@ -114,7 +114,7 @@ const Navbar = () => {
 
   return (
     <Paper>
-      <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} gap={"500px"}>
+      <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} position={"relative"}>
         <div style={{ display: "flex", gap: "20px" }}>
           <Autocomplete
             ref={autoComplete}
@@ -128,7 +128,7 @@ const Navbar = () => {
             Reset
           </Button>
         </div>
-        <Typography className="country-name" variant="h6">
+        <Typography className="country-name" variant="h6" sx={{position: "absolute", left: "48%", top: 20, fontWeight: 600}}>
           Country Name
         </Typography>
       </Stack>
