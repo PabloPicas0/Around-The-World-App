@@ -12,7 +12,11 @@ const DisplayInfo = () => {
   };
 
   const handleLanguages = (language = { test: 0 }) => {
-    return Object.entries(language);
+    const convertedLanguage = Object.entries(language);
+
+    if(convertedLanguage.length === 0) return [["lang", "None"]]
+
+    return convertedLanguage;
   };
 
   return (
@@ -26,7 +30,7 @@ const DisplayInfo = () => {
             <Typography variant="h6" component={"p"}>
               Country Name: {name}
             </Typography>
-            <Typography variant="h6">Capital: {capital}</Typography>
+            <Typography variant="h6">Capital: {capital?.length === 0 ? "None" : capital}</Typography>
             <Typography variant="h6">
               Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
             </Typography>

@@ -8,8 +8,7 @@ import "./App.css";
 
 // TODO
 // Sync search field with info api
-// Reset button resets DisplayInfo component too
-// Add slide animation for DisplayInfo component
+// Work on mobile version
 
 function App() {
   return (
