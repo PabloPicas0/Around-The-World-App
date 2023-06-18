@@ -27,7 +27,8 @@ const RenderWorld = () => {
   const { countryData, aboutCountries, svgRef, setBasicInfo } = useParams();
 
   useEffect(() => {
-    // Selected svg elemnt using d3 and react ref
+    if (!countryData) return;
+
     const svg = d3.select(svgRef.current);
 
     // Drag method on svg element
@@ -126,22 +127,20 @@ const RenderWorld = () => {
     globe.append("path").datum(outline).attr("class", "sphere").attr("d", path);
     globe.append("path").datum(graticule).attr("class", "graticule").attr("d", path);
 
-    if (countryData) {
-      const geojsonCountries = feature(countryData, countryData.objects.countries);
+    const geojsonCountries = feature(countryData, countryData.objects.countries);
 
-      // After fetching data we create path elements in countries g elemnt
-      countries
-        .selectAll("path")
-        .data(geojsonCountries.features)
-        .enter()
-        .append("path")
-        .attr("class", "country")
-        .attr("id", (el) => el.properties.name.replace(/\W/g, ""))
-        .attr("d", path)
-        .on("mousemove", onMouseMove)
-        .on("mouseout", onMouseOut)
-        .on("click", onClick);
-    }
+    // After fetching data we create path elements in countries g elemnt
+    countries
+      .selectAll("path")
+      .data(geojsonCountries.features)
+      .enter()
+      .append("path")
+      .attr("class", "country")
+      .attr("id", (el) => el.properties.name.replace(/\W/g, ""))
+      .attr("d", path)
+      .on("mousemove", onMouseMove)
+      .on("mouseout", onMouseOut)
+      .on("click", onClick);
 
     // Cleanup on unmounting component
     return () => {
