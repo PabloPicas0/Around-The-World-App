@@ -13,9 +13,14 @@ import { Box, Container } from "@mui/material";
 // Consider change API with coutry info to https://restcountries.com/#rest-countries
 
 function App() {
+  const boxStyles = {
+    height: "100vh",
+    minHeight: "100vh",
+  };
+  
   return (
     <Container disableGutters maxWidth={false}>
-      <Box>
+      <Box sx={boxStyles}>
         <ParamsProvider>
           <Navbar />
           <RenderWorld />
