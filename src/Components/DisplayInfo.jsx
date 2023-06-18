@@ -42,7 +42,7 @@ const DisplayInfo = () => {
   const handleClick = () => {
     const displayInfo = d3.select(".info-displayer");
 
-    displayInfo.style("transform", "translate(500px)");
+    displayInfo.style("transform", "translateX(500px)");
   };
 
   return (
