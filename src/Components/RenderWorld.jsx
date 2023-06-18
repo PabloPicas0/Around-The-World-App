@@ -95,7 +95,7 @@ const RenderWorld = () => {
 
       // Create transition on each click
       d3.transition()
-        .duration(1000)
+        .duration(700)
         .tween("rotate", function () {
           const currentCoords = projection.rotate();
           const nextCoords = projection.rotate([-clickCoords[0], -clickCoords[1]]).rotate();

@@ -7,8 +7,8 @@ import { ParamsProvider } from "./Context/context";
 import "./App.css";
 
 // TODO
-// Work on mobile version
-// Abstract styles 
+// Add third API with news or someting like that about country https://api.unsplash.com/
+// Consider change API with coutry info to https://restcountries.com/#rest-countries
 
 function App() {
   return (

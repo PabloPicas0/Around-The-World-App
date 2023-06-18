@@ -89,7 +89,7 @@ const Navbar = () => {
       const [x, y] = typeof coordinates[0][0][0] === "object" ? coordinates[1][0][0] : coordinates[0][1];
 
       d3.transition()
-        .duration(1000)
+        .duration(700)
         .tween("goTo", function () {
           const currentCoords = projection.rotate();
           const nextCoords = projection.rotate([-x, -y]).rotate();
@@ -119,7 +119,7 @@ const Navbar = () => {
     transform.k = 1;
 
     d3.transition()
-      .duration(1000)
+      .duration(700)
       .tween("reset", function () {
         const currentCoords = projection.rotate();
         const defaultCoords = projection.rotate([0, -20]).rotate();
