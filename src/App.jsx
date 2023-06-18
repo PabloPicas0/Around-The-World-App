@@ -6,19 +6,23 @@ import { ParamsProvider } from "./Utils/context";
 
 import "./App.css";
 
+import { Box, Container } from "@mui/material";
+
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
 // Consider change API with coutry info to https://restcountries.com/#rest-countries
 
 function App() {
   return (
-    <>
-      <ParamsProvider>
-        <Navbar />
-        <RenderWorld />
-        <DisplayInfo />
-      </ParamsProvider>
-    </>
+    <Container disableGutters maxWidth={false}>
+      <Box>
+        <ParamsProvider>
+          <Navbar />
+          <RenderWorld />
+          <DisplayInfo />
+        </ParamsProvider>
+      </Box>
+    </Container>
   );
 }
 
