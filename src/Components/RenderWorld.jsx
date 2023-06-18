@@ -111,8 +111,7 @@ const RenderWorld = () => {
         });
     };
 
-    svg.call(drag);
-    svg.call(zoom);
+    svg.call(drag).call(zoom);
 
     // Creating conatiner
     const container = svg
