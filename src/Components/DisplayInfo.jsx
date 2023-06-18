@@ -2,7 +2,7 @@ import { Card, CardContent, IconButton, Paper, ThemeProvider, Typography, create
 
 import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
 
-import { useParams } from "../Context/context";
+import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 
@@ -55,9 +55,7 @@ const DisplayInfo = () => {
         sx={{ width: { xs: window.innerWidth, sm: "400px" }, zIndex: 1337 }}>
         <aside>
           <div style={buttonWrapperStyles}>
-            <IconButton
-              onClick={handleClick}
-              sx={buttonStyles}>
+            <IconButton onClick={handleClick} sx={buttonStyles}>
               X
             </IconButton>
           </div>

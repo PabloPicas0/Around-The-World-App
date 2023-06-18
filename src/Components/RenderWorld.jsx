@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { useParams } from "../Context/context";
+import { useParams } from "../Utils/context";
 
-import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/OtherFn";
+import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Utils/mouseFn";
 import { tooltipStyles } from "../styles/RenderWorldStyles";
 
 import * as d3 from "d3";

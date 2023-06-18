@@ -14,7 +14,7 @@ import { countryNameStyles, navbarStyles, searchBarWrapperStyles } from "../styl
 
 import { useRef } from "react";
 
-import { useParams } from "../Context/context";
+import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
@@ -140,12 +140,7 @@ const Navbar = () => {
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Stack
-          direction={"row"}
-          paddingX={"40px"}
-          paddingY={"10px"}
-          position={"relative"}
-          sx={navbarStyles}>
+        <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} position={"relative"} sx={navbarStyles}>
           <Box sx={searchBarWrapperStyles}>
             <Autocomplete
               ref={autoComplete}
@@ -160,10 +155,7 @@ const Navbar = () => {
             </Button>
           </Box>
 
-          <Typography
-            className="country-name"
-            variant="h6"
-            sx={countryNameStyles}>
+          <Typography className="country-name" variant="h6" sx={countryNameStyles}>
             Country Name
           </Typography>
         </Stack>
