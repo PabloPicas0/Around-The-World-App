@@ -10,6 +10,8 @@ import {
   createTheme,
 } from "@mui/material";
 
+import { countryNameStyles, navbarStyles, searchBarWrapperStyles } from "../styles/NavbarStyles";
+
 import { useRef } from "react";
 
 import { useParams } from "../Context/context";
@@ -143,8 +145,8 @@ const Navbar = () => {
           paddingX={"40px"}
           paddingY={"10px"}
           position={"relative"}
-          sx={{ justifyContent: { xs: "center", lg: "start" } }}>
-          <Box sx={{ display: "flex", gap: "20px", flexDirection: {xs: "column", sm: "row"} }}>
+          sx={navbarStyles}>
+          <Box sx={searchBarWrapperStyles}>
             <Autocomplete
               ref={autoComplete}
               id="select-box"
@@ -161,13 +163,7 @@ const Navbar = () => {
           <Typography
             className="country-name"
             variant="h6"
-            sx={{
-              position: "absolute",
-              left: "48%",
-              top: 20,
-              fontWeight: 600,
-              display: { xs: "none", lg: "flex" },
-            }}>
+            sx={countryNameStyles}>
             Country Name
           </Typography>
         </Stack>

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "../Context/context";
 
 import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Context/OtherFn";
+import { tooltipStyles } from "../styles/RenderWorldStyles";
 
 import * as d3 from "d3";
 import { feature } from "topojson-client";
@@ -151,7 +152,7 @@ const RenderWorld = () => {
   return (
     <div className="world-wrapper">
       <svg ref={svgRef} viewBox={`0 0 ${w} ${h}`} id="world-map"></svg>
-      <Box id="tooltip" sx={{ display: { xs: "none", md: "block" } }}></Box>
+      <Box id="tooltip" sx={tooltipStyles}></Box>
     </div>
   );
 };
