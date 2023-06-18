@@ -80,6 +80,10 @@
     padding: 0;
   }
 
+  .info-displayer {
+    padding: 20px 10px;
+  }
+
   svg {
     height: 100%;
   }
