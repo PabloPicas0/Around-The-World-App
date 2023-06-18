@@ -1,5 +1,7 @@
 import { Card, CardContent, IconButton, Paper, ThemeProvider, Typography, createTheme } from "@mui/material";
 
+import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
+
 import { useParams } from "../Context/context";
 
 import * as d3 from "d3";
@@ -49,18 +51,18 @@ const DisplayInfo = () => {
     <ThemeProvider theme={theme}>
       <Paper
         className="info-displayer"
-        style={{ transform: "translateX(500px)", transition: "transform 250ms ease-in-out" }}
+        style={conatinerStyles}
         sx={{ width: { xs: window.innerWidth, sm: "400px" }, zIndex: 1337 }}>
         <aside>
-          <div style={{ display: "flex", justifyContent: "end" }}>
+          <div style={buttonWrapperStyles}>
             <IconButton
               onClick={handleClick}
-              sx={{ width: "38px", height: "38px", fontWeight: 200, color: "black" }}>
+              sx={buttonStyles}>
               X
             </IconButton>
           </div>
 
-          <h2 style={{ textAlign: "center" }}>About Country</h2>
+          <h2 style={titleStyles}>About Country</h2>
 
           <Card>
             <CardContent>
