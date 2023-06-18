@@ -10,7 +10,7 @@ export const searchBarWrapperStyles = {
 
 export const countryNameStyles = {
   position: "absolute",
-  left: "48%",
+  left: "50%",
   top: 20,
   fontWeight: 600,
   display: { xs: "none", lg: "flex" },

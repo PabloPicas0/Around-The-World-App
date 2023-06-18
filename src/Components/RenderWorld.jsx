@@ -149,7 +149,7 @@ const RenderWorld = () => {
 
   return (
     <div className="world-wrapper">
-      <svg ref={svgRef} viewBox={`0 0 ${w} ${h}`} id="world-map"></svg>
+      <svg ref={svgRef} width={w} height={h} id="world-map"></svg>
       <Box id="tooltip" sx={tooltipStyles}></Box>
     </div>
   );

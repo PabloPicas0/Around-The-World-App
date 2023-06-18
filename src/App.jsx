@@ -14,10 +14,14 @@ import { Box, Container } from "@mui/material";
 
 function App() {
   const boxStyles = {
+    display: "grid",
+    gridTemplateColumns: "auto 400px",
+    gridTemplateRows: "auto 1fr",
     height: "100vh",
     minHeight: "100vh",
+    overflowX: "hidden"
   };
-  
+
   return (
     <Container disableGutters maxWidth={false}>
       <Box sx={boxStyles}>

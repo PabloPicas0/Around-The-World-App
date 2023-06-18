@@ -139,7 +139,7 @@ const Navbar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper>
+      <Paper sx={{ gridColumn: "1 / span 2" }} square>
         <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} position={"relative"} sx={navbarStyles}>
           <Box sx={searchBarWrapperStyles}>
             <Autocomplete
