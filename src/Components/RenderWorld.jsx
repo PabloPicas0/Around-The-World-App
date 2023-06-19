@@ -50,7 +50,7 @@ const RenderWorld = () => {
 
     const zoom = d3.zoom().on("zoom", (e) => {
       // zoom, 230, e.transform.k, svg
-      if (e.transform.k > 0.4 && e.transform.k < 5) {
+      if (e.transform.k > 0.4 && e.transform.k < 15) {
         d3.transition()
           .duration(50)
           .tween("zoom", function () {
@@ -65,7 +65,7 @@ const RenderWorld = () => {
             };
           });
       } else {
-        const k = e.transform.k <= 0.4 ? 0.4 : 5;
+        const k = e.transform.k <= 0.4 ? 0.4 : 15;
         e.transform.k = k;
       }
     });
@@ -149,7 +149,7 @@ const RenderWorld = () => {
 
   return (
     <div className="world-wrapper">
-      <svg ref={svgRef} width={w} height={h} id="world-map"></svg>
+      <svg ref={svgRef} viewBox={`0 0 ${w} ${h}`} id="world-map"></svg>
       <Box id="tooltip" sx={tooltipStyles}></Box>
     </div>
   );

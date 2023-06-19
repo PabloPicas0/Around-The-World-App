@@ -1,5 +1,4 @@
 .world-wrapper {
-  max-width: 1280px;
   padding: 2rem;
   justify-self: last baseline;
   align-self: center;
@@ -59,18 +58,27 @@
 }
 
 #world-map {
+  width: 960px;
+  height: 600px;
   cursor: grab;
+}
+
+@media (width < 1430px) {
+  #world-map {
+    width: 660px;
+  }
 }
 
 @media (width < 1100px) {
   .world-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(
-      100% - (132.5px + 60px)
-    ); /* 132.5px - height of navbar, 60px - additional space for mobile search bar  */
+    width: 100%;
+    height: 100%;
     padding: 0;
+  }
+
+  #world-map {
+    width: 520px;
+    height: 400px;
   }
 
   .info-displayer {
@@ -79,5 +87,12 @@
 
   svg {
     height: 100%;
+  }
+}
+
+@media (width < 930px) {
+  #world-map {
+    width: 320px;
+    height: 400px;
   }
 }
