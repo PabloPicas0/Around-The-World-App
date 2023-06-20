@@ -6,7 +6,6 @@ import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 
-
 const DisplayInfo = () => {
   const { basicInfo } = useParams();
 
@@ -37,36 +36,40 @@ const DisplayInfo = () => {
   };
 
   return (
-      <Paper
-        className="info-displayer"
-        style={conatinerStyles}
-        sx={{ width: { xs: window.innerWidth, sm: "400px" }, zIndex: 1337 }}>
-        <aside>
-          <div style={buttonWrapperStyles}>
-            <IconButton onClick={handleClick} sx={buttonStyles}>
-              X
-            </IconButton>
-          </div>
+    <Paper
+      className="info-displayer"
+      style={conatinerStyles}
+      sx={{
+        width: { xs: "auto", md: "400px" },
+        zIndex: 1337,
+        transform: { xs: "none", md: "translateX(500px)" },
+      }}>
+      <aside>
+        <div style={buttonWrapperStyles}>
+          <IconButton onClick={handleClick} sx={buttonStyles}>
+            X
+          </IconButton>
+        </div>
 
-          <h2 style={titleStyles}>About Country</h2>
+        <h2 style={titleStyles}>About Country</h2>
 
-          <Card>
-            <CardContent>
-              <Typography variant="h6" component={"p"}>
-                Country: {name}
-              </Typography>
-              <Typography variant="h6">Capital: {capital}</Typography>
-              <Typography variant="h6">
-                Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
-              </Typography>
-              <Typography variant="h6">Population: {handleNumberFormat(population)}</Typography>
-              <Typography variant="h6">Area: {handleNumberFormat(area)}</Typography>
-            </CardContent>
-          </Card>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" component={"p"}>
+              Country: {name}
+            </Typography>
+            <Typography variant="h6">Capital: {capital}</Typography>
+            <Typography variant="h6">
+              Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
+            </Typography>
+            <Typography variant="h6">Population: {handleNumberFormat(population)}</Typography>
+            <Typography variant="h6">Area: {handleNumberFormat(area)}</Typography>
+          </CardContent>
+        </Card>
 
-          <div>test 2</div>
-        </aside>
-      </Paper>
+        <div>test 2</div>
+      </aside>
+    </Paper>
   );
 };
 

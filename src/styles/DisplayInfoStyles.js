@@ -1,5 +1,4 @@
 export const conatinerStyles = {
-  transform: "translateX(500px)",
   transition: "transform 250ms ease-in-out",
 };
 

@@ -11,16 +11,16 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
 // Consider change API with coutry info to https://restcountries.com/#rest-countries
-// Work on more responsvie navbar
-// Changed position of display info component based on breakpoints
 // Additionally you can work on globe scale change on different breakpoints
+// Abstract styles
+// there are some bugs with transform when you click on some country
 
 const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
       sm: 400,
-      md: 900,
+      md: 960,
       lg: 1100,
       xl: 1536,
     },
@@ -30,7 +30,7 @@ const theme = createTheme({
 function App() {
   const boxStyles = {
     display: "grid",
-    gridTemplateColumns: "auto 400px",
+    gridTemplateColumns: { xs: "1fr", md: "auto 400px" },
     gridTemplateRows: "auto 1fr",
     height: "100vh",
     minHeight: "100vh",

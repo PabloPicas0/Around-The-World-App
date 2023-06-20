@@ -19,7 +19,6 @@ import { useParams } from "../Utils/context";
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
 
-
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
 
@@ -127,27 +126,32 @@ const Navbar = () => {
   };
 
   return (
-      <Paper sx={{ gridColumn: "1 / span 2" }} square>
-        <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} position={"relative"} sx={navbarStyles}>
-          <Box sx={searchBarWrapperStyles}>
-            <Autocomplete
-              ref={autoComplete}
-              id="select-box"
-              sx={{ width: 280 }}
-              options={handleOption()}
-              renderInput={(params) => <TextField {...params} label="Find Country" />}
-              onInputChange={handleChange}
-            />
-            <Button variant="outlined" onClick={handleReset}>
-              Reset
-            </Button>
-          </Box>
+    <Paper sx={{ gridColumn: { xs: 1, md: "1 / span 2" } }} square>
+      <Stack
+        direction={"row"}
+        paddingX={{ xs: 0, md: "40px" }}
+        paddingY={"10px"}
+        position={"relative"}
+        sx={navbarStyles}>
+        <Box sx={searchBarWrapperStyles}>
+          <Autocomplete
+            ref={autoComplete}
+            id="select-box"
+            sx={{ width: 280 }}
+            options={handleOption()}
+            renderInput={(params) => <TextField {...params} label="Find Country" />}
+            onInputChange={handleChange}
+          />
+          <Button variant="outlined" onClick={handleReset}>
+            Reset
+          </Button>
+        </Box>
 
-          <Typography className="country-name" variant="h6" sx={countryNameStyles}>
-            Country Name
-          </Typography>
-        </Stack>
-      </Paper>
+        <Typography className="country-name" variant="h6" sx={countryNameStyles}>
+          Country Name
+        </Typography>
+      </Stack>
+    </Paper>
   );
 };
 

@@ -148,10 +148,10 @@ const RenderWorld = () => {
   }, [countryData]);
 
   return (
-    <div className="world-wrapper">
+    <Box sx={{height: {xs: "75vh", md: "auto"}}} className="world-wrapper">
       <svg ref={svgRef} viewBox={`0 0 ${w} ${h}`} id="world-map"></svg>
       <Box id="tooltip" sx={tooltipStyles}></Box>
-    </div>
+    </Box>
   );
 };
 
