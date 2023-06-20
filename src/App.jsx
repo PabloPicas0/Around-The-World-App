@@ -38,17 +38,17 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container disableGutters maxWidth={false}>
-        <Box sx={boxStyles}>
-          <ParamsProvider>
+    <ParamsProvider>
+      <ThemeProvider theme={theme}>
+        <Container disableGutters maxWidth={false}>
+          <Box sx={boxStyles}>
             <Navbar />
             <RenderWorld />
             <DisplayInfo />
-          </ParamsProvider>
-        </Box>
-      </Container>
-    </ThemeProvider>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </ParamsProvider>
   );
 }
 
