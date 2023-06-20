@@ -19,17 +19,6 @@ import { useParams } from "../Utils/context";
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1100,
-      xl: 1536,
-    },
-  },
-});
 
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
@@ -138,7 +127,6 @@ const Navbar = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Paper sx={{ gridColumn: "1 / span 2" }} square>
         <Stack direction={"row"} paddingX={"40px"} paddingY={"10px"} position={"relative"} sx={navbarStyles}>
           <Box sx={searchBarWrapperStyles}>
@@ -160,7 +148,6 @@ const Navbar = () => {
           </Typography>
         </Stack>
       </Paper>
-    </ThemeProvider>
   );
 };
 

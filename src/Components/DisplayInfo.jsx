@@ -6,17 +6,6 @@ import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 400,
-      md: 900,
-      lg: 1100,
-      xl: 1536,
-    },
-  },
-});
 
 const DisplayInfo = () => {
   const { basicInfo } = useParams();
@@ -48,7 +37,6 @@ const DisplayInfo = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Paper
         className="info-displayer"
         style={conatinerStyles}
@@ -79,7 +67,6 @@ const DisplayInfo = () => {
           <div>test 2</div>
         </aside>
       </Paper>
-    </ThemeProvider>
   );
 };
 
