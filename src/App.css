@@ -90,7 +90,7 @@
   }
 }
 
-@media (width < 930px) {
+@media (width < 520px) {
   #world-map {
     width: 320px;
     height: 400px;
