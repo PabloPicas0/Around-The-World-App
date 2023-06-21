@@ -2,12 +2,12 @@ import {
   Autocomplete,
   Box,
   Button,
+  ButtonGroup,
+  IconButton,
+  Link,
   Paper,
   Stack,
   TextField,
-  ThemeProvider,
-  Typography,
-  createTheme,
 } from "@mui/material";
 
 import { countryNameStyles, navbarStyles, searchBarWrapperStyles } from "../styles/NavbarStyles";
@@ -18,11 +18,18 @@ import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
+import { GitHub, Language, LinkedIn, Public } from "@mui/icons-material";
 
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
 
   const autoComplete = useRef(null);
+
+  const links = [
+    { href: "https://github.com/PabloPicas0", icon: <GitHub /> },
+    { href: "https://github.com/PabloPicas0", icon: <LinkedIn /> },
+    { href: "https://github.com/PabloPicas0", icon: <Public /> },
+  ];
 
   const handleOption = () => {
     if (countryData) {
@@ -129,10 +136,14 @@ const Navbar = () => {
     <Paper sx={{ gridColumn: { xs: 1, md: "1 / span 2" } }} square>
       <Stack
         direction={"row"}
-        paddingX={{ xs: 0, md: "40px" }}
+        paddingX={{ xs: 2, md: "40px" }}
         paddingY={"10px"}
         position={"relative"}
         sx={navbarStyles}>
+        <IconButton sx={{ width: "48px", height: "48px", color: "black" }} disabled> 
+          <Language fontSize="large"/>
+        </IconButton>
+
         <Box sx={searchBarWrapperStyles}>
           <Autocomplete
             ref={autoComplete}
@@ -147,9 +158,17 @@ const Navbar = () => {
           </Button>
         </Box>
 
-        <Typography className="country-name" variant="h6" sx={countryNameStyles}>
-          Country Name
-        </Typography>
+        <ButtonGroup>
+          {links.map((link, idx) => {
+            const { href, icon } = link;
+
+            return (
+              <Link key={idx} href={href} target="_blank">
+                <IconButton sx={{ width: "48px", height: "48px", color: "black" }}>{icon}</IconButton>
+              </Link>
+            );
+          })}
+        </ButtonGroup>
       </Stack>
     </Paper>
   );

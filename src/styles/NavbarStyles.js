@@ -1,5 +1,5 @@
 export const navbarStyles = {
-  justifyContent: { xs: "center", lg: "start" },
+  justifyContent:  "space-between" ,
 };
 
 export const searchBarWrapperStyles = {
@@ -13,5 +13,5 @@ export const countryNameStyles = {
   left: "50%",
   top: 20,
   fontWeight: 600,
-  display: { xs: "none", lg: "flex" },
+  display: { xs: "none", md: "flex" },
 };
