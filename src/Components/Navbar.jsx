@@ -11,7 +11,12 @@ import {
   Tooltip,
 } from "@mui/material";
 
-import { countryNameStyles, navbarStyles, searchBarWrapperStyles } from "../styles/NavbarStyles";
+import {
+  iconStyles,
+  navbarContainer,
+  navbarWrapperStyles,
+  searchBarWrapperStyles,
+} from "../styles/NavbarStyles";
 
 import { useRef } from "react";
 
@@ -134,14 +139,9 @@ const Navbar = () => {
   };
 
   return (
-    <Paper sx={{ gridColumn: { xs: 1, md: "1 / span 2" } }} square>
-      <Stack
-        direction={"row"}
-        paddingX={{ xs: 2, md: "40px" }}
-        paddingY={"10px"}
-        position={"relative"}
-        sx={navbarStyles}>
-        <IconButton sx={{ width: "48px", height: "48px", color: "black" }} disabled>
+    <Paper sx={navbarContainer} square>
+      <Stack direction={"row"} sx={navbarWrapperStyles}>
+        <IconButton sx={iconStyles} disabled>
           <Language fontSize="large" />
         </IconButton>
 
@@ -154,9 +154,9 @@ const Navbar = () => {
             renderInput={(params) => <TextField {...params} label="Find Country" />}
             onInputChange={handleChange}
           />
-          
+
           <Tooltip title="Reset" arrow>
-            <IconButton sx={{ width: "48px", height: "48px", color: "black" }} onClick={handleReset}>
+            <IconButton sx={iconStyles} onClick={handleReset}>
               <Replay />
             </IconButton>
           </Tooltip>
@@ -167,9 +167,9 @@ const Navbar = () => {
             const { href, icon, description } = link;
 
             return (
-              <Tooltip title={description} arrow>
-                <Link key={idx} href={href} target="_blank">
-                  <IconButton sx={{ width: "48px", height: "48px", color: "black" }}>{icon}</IconButton>
+              <Tooltip key={idx} title={description} arrow>
+                <Link href={href} target="_blank">
+                  <IconButton sx={iconStyles}>{icon}</IconButton>
                 </Link>
               </Tooltip>
             );

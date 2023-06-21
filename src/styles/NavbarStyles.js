@@ -1,5 +1,11 @@
-export const navbarStyles = {
-  justifyContent:  "space-between" ,
+export const navbarContainer = {
+  gridColumn: { xs: 1, md: "1 / span 2" },
+};
+
+export const navbarWrapperStyles = {
+  justifyContent: "space-between",
+  paddingY: "10px",
+  paddingX: { xs: 2, md: "40px" },
 };
 
 export const searchBarWrapperStyles = {
@@ -8,10 +14,8 @@ export const searchBarWrapperStyles = {
   flexDirection: { xs: "column", sm: "row" },
 };
 
-export const countryNameStyles = {
-  position: "absolute",
-  left: "50%",
-  top: 20,
-  fontWeight: 600,
-  display: { xs: "none", md: "flex" },
+export const iconStyles = {
+  width: "48px",
+  height: "48px",
+  color: "black",
 };

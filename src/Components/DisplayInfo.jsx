@@ -1,10 +1,11 @@
-import { Card, CardContent, IconButton, Paper, ThemeProvider, Typography, createTheme } from "@mui/material";
+import { Card, CardContent, IconButton, Paper, Typography } from "@mui/material";
 
 import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
 
 import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
+import { Close, CloseSharp } from "@mui/icons-material";
 
 const DisplayInfo = () => {
   const { basicInfo } = useParams();
@@ -36,18 +37,11 @@ const DisplayInfo = () => {
   };
 
   return (
-    <Paper
-      className="info-displayer"
-      style={conatinerStyles}
-      sx={{
-        width: { xs: "auto", md: "400px" },
-        zIndex: 1337,
-        transform: { xs: "none", md: "translateX(500px)" },
-      }}>
+    <Paper className="info-displayer" sx={conatinerStyles} square>
       <aside>
         <div style={buttonWrapperStyles}>
           <IconButton onClick={handleClick} sx={buttonStyles}>
-            X
+            <CloseSharp fontSize="large"/>
           </IconButton>
         </div>
 
