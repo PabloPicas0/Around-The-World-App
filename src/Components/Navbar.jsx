@@ -8,6 +8,7 @@ import {
   Paper,
   Stack,
   TextField,
+  Tooltip,
 } from "@mui/material";
 
 import { countryNameStyles, navbarStyles, searchBarWrapperStyles } from "../styles/NavbarStyles";
@@ -18,7 +19,7 @@ import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
-import { GitHub, Language, LinkedIn, Public } from "@mui/icons-material";
+import { GitHub, Language, LinkedIn, Public, Replay } from "@mui/icons-material";
 
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
@@ -26,9 +27,9 @@ const Navbar = () => {
   const autoComplete = useRef(null);
 
   const links = [
-    { href: "https://github.com/PabloPicas0", icon: <GitHub /> },
-    { href: "https://github.com/PabloPicas0", icon: <LinkedIn /> },
-    { href: "https://github.com/PabloPicas0", icon: <Public /> },
+    { href: "https://github.com/PabloPicas0", icon: <GitHub />, description: "Check my GitHub profile" },
+    { href: "https://github.com/PabloPicas0", icon: <LinkedIn />, description: "Check my LinkedIn profile" },
+    { href: "https://github.com/PabloPicas0", icon: <Public />, description: "Check my portfolio" },
   ];
 
   const handleOption = () => {
@@ -140,8 +141,8 @@ const Navbar = () => {
         paddingY={"10px"}
         position={"relative"}
         sx={navbarStyles}>
-        <IconButton sx={{ width: "48px", height: "48px", color: "black" }} disabled> 
-          <Language fontSize="large"/>
+        <IconButton sx={{ width: "48px", height: "48px", color: "black" }} disabled>
+          <Language fontSize="large" />
         </IconButton>
 
         <Box sx={searchBarWrapperStyles}>
@@ -153,19 +154,24 @@ const Navbar = () => {
             renderInput={(params) => <TextField {...params} label="Find Country" />}
             onInputChange={handleChange}
           />
-          <Button variant="outlined" onClick={handleReset}>
-            Reset
-          </Button>
+          
+          <Tooltip title="Reset" arrow>
+            <IconButton sx={{ width: "48px", height: "48px", color: "black" }} onClick={handleReset}>
+              <Replay />
+            </IconButton>
+          </Tooltip>
         </Box>
 
         <ButtonGroup>
           {links.map((link, idx) => {
-            const { href, icon } = link;
+            const { href, icon, description } = link;
 
             return (
-              <Link key={idx} href={href} target="_blank">
-                <IconButton sx={{ width: "48px", height: "48px", color: "black" }}>{icon}</IconButton>
-              </Link>
+              <Tooltip title={description} arrow>
+                <Link key={idx} href={href} target="_blank">
+                  <IconButton sx={{ width: "48px", height: "48px", color: "black" }}>{icon}</IconButton>
+                </Link>
+              </Tooltip>
             );
           })}
         </ButtonGroup>
