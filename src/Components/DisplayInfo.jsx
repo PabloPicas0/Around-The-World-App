@@ -6,9 +6,14 @@ import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 import { Close, CloseSharp } from "@mui/icons-material";
+import { useRef } from "react";
+import useOnScreen from "../Utils/detectVisibility";
 
 const DisplayInfo = () => {
   const { basicInfo } = useParams();
+
+  const displayInfoRef = useRef(null);
+  const isVisible = useOnScreen(displayInfoRef);
 
   const {
     name = "No information",
@@ -37,11 +42,11 @@ const DisplayInfo = () => {
   };
 
   return (
-    <Paper className="info-displayer" sx={conatinerStyles} square>
+    <Paper className="info-displayer" ref={displayInfoRef} sx={conatinerStyles} square>
       <aside>
         <div style={buttonWrapperStyles}>
-          <IconButton onClick={handleClick} sx={buttonStyles}>
-            <CloseSharp fontSize="large"/>
+          <IconButton onClick={handleClick} sx={buttonStyles} tabIndex={isVisible ? 0 : -1}>
+            <CloseSharp fontSize="large" />
           </IconButton>
         </div>
 

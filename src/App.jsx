@@ -12,9 +12,7 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 // Add third API with news or someting like that about country https://api.unsplash.com/
 // Consider change API with coutry info to https://restcountries.com/#rest-countries
 // Additionally you can work on globe scale change on different breakpoints
-// Abstract styles
 // there are some bugs with transform when you click on some country
-// Display info button is focusable through tab
 // Disable navbar icons on md breakpoint
 
 const theme = createTheme({
