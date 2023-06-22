@@ -108,9 +108,12 @@ const Navbar = () => {
     const transform = d3.zoomTransform(svg.node());
     const displayInfo = d3.select(".info-displayer");
 
-    displayInfo.style("transform", "translateX(500px)");
+    // Prevents from hiding DisplayInfo component on devices width smaller than 960px 
+    if (window.innerWidth >= 960) displayInfo.style("transform", "translateX(500px)");
+
     checkedCountry.classed("checked", false);
     countryNameBox.text("Country Name");
+
     if (clearButton) clearButton.click();
     transform.k = 1;
 
