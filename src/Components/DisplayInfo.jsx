@@ -1,13 +1,14 @@
-import { Card, CardContent, IconButton, Paper, Typography } from "@mui/material";
+import { Box, ButtonGroup, Card, CardContent, IconButton, Link, Paper, Typography } from "@mui/material";
+import { CloseSharp, Language } from "@mui/icons-material";
 
 import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
 
 import { useParams } from "../Utils/context";
+import useOnScreen from "../Utils/detectVisibility";
 
 import * as d3 from "d3";
-import { Close, CloseSharp } from "@mui/icons-material";
 import { useRef } from "react";
-import useOnScreen from "../Utils/detectVisibility";
+import { links } from "../Utils/sheredData";
 
 const DisplayInfo = () => {
   const { basicInfo } = useParams();
@@ -44,11 +45,34 @@ const DisplayInfo = () => {
   return (
     <Paper className="info-displayer" ref={displayInfoRef} sx={conatinerStyles} square>
       <aside>
-        <div style={buttonWrapperStyles}>
-          <IconButton onClick={handleClick} sx={buttonStyles} tabIndex={isVisible ? 0 : -1}>
+        <Box sx={buttonWrapperStyles}>
+          <IconButton
+            onClick={handleClick}
+            sx={{ ...buttonStyles, display: { xs: "none", md: "inline-flex" } }}
+            tabIndex={isVisible ? 0 : -1}>
             <CloseSharp fontSize="large" />
           </IconButton>
-        </div>
+
+          <IconButton
+            sx={{ ...buttonStyles, display: { xs: "inline-flex", md: "none" }, marginLeft: "20px" }}
+            disabled>
+            <Language fontSize="large" />
+          </IconButton>
+
+          <ButtonGroup sx={{ display: { xs: "inline-flex", md: "none" }, marginRight: "20px" }}>
+            {links.map((link, idx) => {
+              const { href, icon, description } = link;
+
+              return (
+                <Link key={idx} href={href} target="_blank">
+                  <IconButton aria-label={description} sx={buttonStyles}>
+                    {icon}
+                  </IconButton>
+                </Link>
+              );
+            })}
+          </ButtonGroup>
+        </Box>
 
         <h2 style={titleStyles}>About Country</h2>
 

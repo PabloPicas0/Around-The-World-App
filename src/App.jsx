@@ -13,7 +13,6 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 // Consider change API with coutry info to https://restcountries.com/#rest-countries
 // Additionally you can work on globe scale change on different breakpoints
 // there are some bugs with transform when you click on some country
-// Disable close icons on xs breakpoint and replace it with icons from navbar
 
 const theme = createTheme({
   breakpoints: {

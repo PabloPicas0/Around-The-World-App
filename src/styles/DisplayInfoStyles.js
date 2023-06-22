@@ -7,7 +7,7 @@ export const conatinerStyles = {
 
 export const buttonWrapperStyles = {
   display: "flex",
-  justifyContent: "end",
+  justifyContent: { xs: "space-between", md: "end" },
 };
 
 export const buttonStyles = {

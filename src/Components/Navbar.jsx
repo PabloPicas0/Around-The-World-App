@@ -24,18 +24,13 @@ import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
 import { path, projection } from "./RenderWorld";
-import { GitHub, Language, LinkedIn, Public, Replay } from "@mui/icons-material";
+import { Language, Replay } from "@mui/icons-material";
+import { links } from "../Utils/sheredData";
 
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
 
   const autoComplete = useRef(null);
-
-  const links = [
-    { href: "https://github.com/PabloPicas0", icon: <GitHub />, description: "Check my GitHub profile" },
-    { href: "https://github.com/PabloPicas0", icon: <LinkedIn />, description: "Check my LinkedIn profile" },
-    { href: "https://github.com/PabloPicas0", icon: <Public />, description: "Check my portfolio" },
-  ];
 
   const handleOption = () => {
     if (countryData) {
@@ -141,7 +136,7 @@ const Navbar = () => {
   return (
     <Paper sx={navbarContainer} square>
       <Stack direction={"row"} sx={navbarWrapperStyles}>
-        <IconButton sx={{ ...iconStyles, display: { xs: "none", md: "inlineFlex" } }} disabled>
+        <IconButton sx={{ ...iconStyles, display: { xs: "none", md: "inline-flex" } }} disabled>
           <Language fontSize="large" />
         </IconButton>
 
@@ -149,7 +144,7 @@ const Navbar = () => {
           <Autocomplete
             ref={autoComplete}
             id="select-box"
-            sx={{ width: {xs: "200px", sm: "280px"} }}
+            sx={{ width: { xs: "200px", sm: "280px" } }}
             options={handleOption()}
             renderInput={(params) => <TextField {...params} label="Find Country" />}
             onInputChange={handleChange}
@@ -162,7 +157,7 @@ const Navbar = () => {
           </Tooltip>
         </Box>
 
-        <ButtonGroup sx={{ display: { xs: "none", md: "inlineFlex" } }}>
+        <ButtonGroup sx={{ display: { xs: "none", md: "inline-flex" } }}>
           {links.map((link, idx) => {
             const { href, icon, description } = link;
 
