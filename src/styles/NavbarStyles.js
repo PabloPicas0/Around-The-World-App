@@ -3,7 +3,7 @@ export const navbarContainer = {
 };
 
 export const navbarWrapperStyles = {
-  justifyContent: "space-between",
+  justifyContent: { xs: "center", md: "space-between" },
   paddingY: "10px",
   paddingX: { xs: 2, md: "40px" },
 };
@@ -11,7 +11,7 @@ export const navbarWrapperStyles = {
 export const searchBarWrapperStyles = {
   display: "flex",
   gap: "20px",
-  flexDirection: { xs: "column", sm: "row" },
+  flexDirection: "row",
 };
 
 export const iconStyles = {

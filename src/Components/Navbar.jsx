@@ -141,7 +141,7 @@ const Navbar = () => {
   return (
     <Paper sx={navbarContainer} square>
       <Stack direction={"row"} sx={navbarWrapperStyles}>
-        <IconButton sx={iconStyles} disabled>
+        <IconButton sx={{ ...iconStyles, display: { xs: "none", md: "inlineFlex" } }} disabled>
           <Language fontSize="large" />
         </IconButton>
 
@@ -149,7 +149,7 @@ const Navbar = () => {
           <Autocomplete
             ref={autoComplete}
             id="select-box"
-            sx={{ width: 280 }}
+            sx={{ width: {xs: "200px", sm: "280px"} }}
             options={handleOption()}
             renderInput={(params) => <TextField {...params} label="Find Country" />}
             onInputChange={handleChange}
@@ -162,7 +162,7 @@ const Navbar = () => {
           </Tooltip>
         </Box>
 
-        <ButtonGroup>
+        <ButtonGroup sx={{ display: { xs: "none", md: "inlineFlex" } }}>
           {links.map((link, idx) => {
             const { href, icon, description } = link;
 
