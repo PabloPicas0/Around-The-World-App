@@ -11,7 +11,6 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
 // Consider change API with coutry info to https://restcountries.com/#rest-countries
-// Additionally you can work on globe scale change on different breakpoints
 // there are some bugs with transform when you click on some country
 
 const theme = createTheme({

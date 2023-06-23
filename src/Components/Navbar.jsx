@@ -10,6 +10,7 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
+import { Language, Replay } from "@mui/icons-material";
 
 import {
   iconStyles,
@@ -23,9 +24,11 @@ import { useRef } from "react";
 import { useParams } from "../Utils/context";
 
 import * as d3 from "d3";
+
 import { path, projection } from "./RenderWorld";
-import { Language, Replay } from "@mui/icons-material";
+
 import { links } from "../Utils/sheredData";
+import getScale from "../Utils/scale";
 
 const Navbar = () => {
   const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
@@ -124,7 +127,7 @@ const Navbar = () => {
         const defaultCoords = projection.rotate([0, -20]).rotate();
 
         const currentScale = projection.scale();
-        const defaultScale = projection.scale(200).scale();
+        const defaultScale = projection.scale(getScale()).scale();
 
         const interpCoords = d3.geoInterpolate(currentCoords, defaultCoords);
         const interpScale = d3.interpolate(currentScale, defaultScale);

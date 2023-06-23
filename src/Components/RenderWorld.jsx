@@ -9,8 +9,9 @@ import * as d3 from "d3";
 import { feature } from "topojson-client";
 
 import { Box } from "@mui/system";
+import getScale from "../Utils/scale";
 
-export const projection = d3.geoOrthographic().scale(200).center([0, 0]).rotate([0, -20]);
+export const projection = d3.geoOrthographic().scale(getScale()).center([0, 0]).rotate([0, -20]);
 export const path = d3.geoPath(projection);
 
 // Dimmensions for svg element
@@ -30,6 +31,7 @@ const RenderWorld = () => {
     if (!countryData) return;
 
     const svg = d3.select(svgRef.current);
+    const scale = getScale()
 
     // Drag method on svg element
     const drag = d3
@@ -55,7 +57,7 @@ const RenderWorld = () => {
           .duration(50)
           .tween("zoom", function () {
             const currentScale = projection.scale();
-            const nextScale = projection.scale(230 * e.transform.k).scale();
+            const nextScale = projection.scale(scale * e.transform.k).scale();
 
             const interp = d3.interpolate(currentScale, nextScale);
 
