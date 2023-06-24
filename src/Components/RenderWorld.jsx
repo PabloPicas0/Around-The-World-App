@@ -10,6 +10,7 @@ import { feature } from "topojson-client";
 
 import { Box } from "@mui/system";
 import getScale from "../Utils/scale";
+import { makeInfoCall } from "../Utils/fetchRequests";
 
 export const projection = d3.geoOrthographic().scale(getScale()).center([0, 0]).rotate([0, -20]);
 export const path = d3.geoPath(projection);
@@ -25,13 +26,13 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, aboutCountries, svgRef, setBasicInfo } = useParams();
+  const { countryData, svgRef, setBasicInfo } = useParams();
 
   useEffect(() => {
     if (!countryData) return;
 
     const svg = d3.select(svgRef.current);
-    const scale = getScale()
+    const scale = getScale();
 
     // Drag method on svg element
     const drag = d3
@@ -83,9 +84,8 @@ const RenderWorld = () => {
       nextCountry.classed("checked", true);
       displayInfo.style("transform", "translateX(0px)");
 
-      const findCountry = aboutCountries.find((country) => country.ccn3 === id);
-
-      setBasicInfo(findCountry);
+      makeInfoCall(id).then((info) => setBasicInfo(info));
+      console.log(e);
 
       // Get the clicked point in px
       const [x, y] = d3.pointer(e);

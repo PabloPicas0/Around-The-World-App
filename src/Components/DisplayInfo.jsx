@@ -22,7 +22,7 @@ const DisplayInfo = () => {
     area = 0,
     capital = "No information",
     languages = {},
-  } = basicInfo || {};
+  } = basicInfo[0] || {};
 
   const handleNumberFormat = (number = 0) => {
     return new Intl.NumberFormat("en", { notation: "compact" }).format(number);
@@ -79,7 +79,7 @@ const DisplayInfo = () => {
         <Card>
           <CardContent>
             <Typography variant="h6" component={"p"}>
-              Country: {name}
+              Country: {name.common}
             </Typography>
             <Typography variant="h6">Capital: {capital}</Typography>
             <Typography variant="h6">

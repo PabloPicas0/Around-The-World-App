@@ -1,7 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-
-const url = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
-const infoUrl = "https://countryinfoapi.com/api/countries";
+import { fetchLands } from "./fetchRequests";
 
 const context = createContext();
 
@@ -11,8 +9,7 @@ export const useParams = () => {
 
 export const ParamsProvider = ({ children }) => {
   const [countryData, setCountryData] = useState(null);
-  const [aboutCountries, setAboutCountries] = useState(null);
-  const [basicInfo, setBasicInfo] = useState({})
+  const [basicInfo, setBasicInfo] = useState({});
 
   const svgRef = useRef(null);
 
@@ -20,24 +17,14 @@ export const ParamsProvider = ({ children }) => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    Promise.all([
-      fetch(url, { signal }).then((response) => response.json()), 
-      fetch(infoUrl, { signal }).then((response) => response.json())
-    ]).then((data) => {
-      const [countryBorders, countryInfo] = data
+    fetchLands({ signal }).then((data) => setCountryData(data));
 
-      setCountryData(countryBorders)
-      setAboutCountries(countryInfo);
-    });
-
-      return () => {
-        controller.abort();
-      }
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return (
-    <context.Provider value={{ countryData, svgRef, aboutCountries, basicInfo, setBasicInfo }}>
-      {children}
-    </context.Provider>
+    <context.Provider value={{ countryData, svgRef, basicInfo, setBasicInfo }}>{children}</context.Provider>
   );
 };

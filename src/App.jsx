@@ -10,9 +10,7 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
-// Consider change API with coutry info to https://restcountries.com/#rest-countries
-// there are some bugs with transform when you click on some country
-
+// Add loading while fetching data
 const theme = createTheme({
   breakpoints: {
     values: {
