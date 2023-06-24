@@ -1,7 +1,6 @@
 import {
   Autocomplete,
   Box,
-  Button,
   ButtonGroup,
   IconButton,
   Link,
@@ -29,9 +28,10 @@ import { path, projection } from "./RenderWorld";
 
 import { links } from "../Utils/sheredData";
 import getScale from "../Utils/scale";
+import { makeInfoCall } from "../Utils/fetchRequests";
 
 const Navbar = () => {
-  const { countryData, aboutCountries, setBasicInfo, svgRef } = useParams();
+  const { countryData, setSpinner, setBasicInfo, svgRef } = useParams();
 
   const autoComplete = useRef(null);
 
@@ -61,13 +61,11 @@ const Navbar = () => {
 
     if ((type === "click" && value !== "") || type === "keydown") {
       const svg = d3.select(svgRef.current);
-      const countryNameBox = d3.select(".country-name");
       const prevCountry = d3.select(".checked");
       const displayInfo = d3.select(".info-displayer");
 
       prevCountry.classed("checked", false);
       displayInfo.style("transform", "translate(0px)");
-      countryNameBox.text(value);
 
       const countryName = value.replace(/\W/g, "");
 
@@ -77,9 +75,14 @@ const Navbar = () => {
 
       const { id } = selectedCountry.data()[0];
 
-      const findCountry = aboutCountries.find((country) => country.ccn3 === id);
+      setSpinner(true)
 
-      setBasicInfo(findCountry);
+      makeInfoCall(id).then(info => {
+        setTimeout(() => {
+          setBasicInfo(info)
+          setSpinner(false)
+        }, 500)
+      });
 
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
 
@@ -106,7 +109,6 @@ const Navbar = () => {
   const handleReset = () => {
     const svg = d3.select(svgRef.current);
     const checkedCountry = d3.select(".checked");
-    const countryNameBox = d3.select(".country-name");
     const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
     const transform = d3.zoomTransform(svg.node());
     const displayInfo = d3.select(".info-displayer");
@@ -115,7 +117,6 @@ const Navbar = () => {
     if (window.innerWidth >= 960) displayInfo.style("transform", "translateX(500px)");
 
     checkedCountry.classed("checked", false);
-    countryNameBox.text("Country Name");
 
     if (clearButton) clearButton.click();
     transform.k = 1;

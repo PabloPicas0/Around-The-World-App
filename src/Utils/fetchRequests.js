@@ -1,6 +1,6 @@
 export const makeInfoCall = async (id) => {
-  // Kosovo has no ccn3
-  // switch to cca3
+  // Kosovo has no ccn3 id
+  // switch to cca3 id
   if (!id) id = "KOS";
 
   const call = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);

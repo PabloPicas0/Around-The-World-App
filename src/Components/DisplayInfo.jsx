@@ -1,4 +1,14 @@
-import { Box, ButtonGroup, Card, CardContent, IconButton, Link, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  ButtonGroup,
+  Card,
+  CardContent,
+  CircularProgress,
+  IconButton,
+  Link,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { CloseSharp, Language } from "@mui/icons-material";
 
 import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
@@ -11,7 +21,7 @@ import { useRef } from "react";
 import { links } from "../Utils/sheredData";
 
 const DisplayInfo = () => {
-  const { basicInfo } = useParams();
+  const { basicInfo, spinner } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
@@ -42,9 +52,25 @@ const DisplayInfo = () => {
     displayInfo.style("transform", "translateX(500px)");
   };
 
+  const cardContent = (
+    <Card>
+      <CardContent>
+        <Typography variant="h6" component={"p"}>
+          Country: {name.common}
+        </Typography>
+        <Typography variant="h6">Capital: {capital}</Typography>
+        <Typography variant="h6">
+          Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
+        </Typography>
+        <Typography variant="h6">Population: {handleNumberFormat(population)}</Typography>
+        <Typography variant="h6">Area: {handleNumberFormat(area)}</Typography>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <Paper className="info-displayer" ref={displayInfoRef} sx={conatinerStyles} square>
-      <aside>
+      <aside style={{textAlign: "center"}}>
         <Box sx={buttonWrapperStyles}>
           <IconButton
             onClick={handleClick}
@@ -76,19 +102,7 @@ const DisplayInfo = () => {
 
         <h2 style={titleStyles}>About Country</h2>
 
-        <Card>
-          <CardContent>
-            <Typography variant="h6" component={"p"}>
-              Country: {name.common}
-            </Typography>
-            <Typography variant="h6">Capital: {capital}</Typography>
-            <Typography variant="h6">
-              Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
-            </Typography>
-            <Typography variant="h6">Population: {handleNumberFormat(population)}</Typography>
-            <Typography variant="h6">Area: {handleNumberFormat(area)}</Typography>
-          </CardContent>
-        </Card>
+        {spinner ? <CircularProgress /> : cardContent}
 
         <div>test 2</div>
       </aside>

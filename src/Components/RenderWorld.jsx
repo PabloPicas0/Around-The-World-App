@@ -26,7 +26,7 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, svgRef, setBasicInfo } = useParams();
+  const { countryData, svgRef, setBasicInfo, setSpinner } = useParams();
 
   useEffect(() => {
     if (!countryData) return;
@@ -84,8 +84,14 @@ const RenderWorld = () => {
       nextCountry.classed("checked", true);
       displayInfo.style("transform", "translateX(0px)");
 
-      makeInfoCall(id).then((info) => setBasicInfo(info));
-      console.log(e);
+      setSpinner(true);
+
+      makeInfoCall(id).then((info) => {
+        setTimeout(() => {
+          setBasicInfo(info);
+          setSpinner(false);
+        }, 500);
+      });
 
       // Get the clicked point in px
       const [x, y] = d3.pointer(e);
