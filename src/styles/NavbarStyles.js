@@ -1,5 +1,8 @@
+import { grey } from "@mui/material/colors";
+
 export const navbarContainer = {
   gridColumn: { xs: 1, md: "1 / span 2" },
+  backgroundColor: grey[50]
 };
 
 export const navbarWrapperStyles = {
