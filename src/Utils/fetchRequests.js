@@ -3,10 +3,21 @@ export const makeInfoCall = async (id) => {
   // switch to cca3 id
   if (!id) id = "KOS";
 
-  const call = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
-  const data = await call.json();
+  const basicInfoCall = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
+  const basicInfoData = await basicInfoCall.json();
 
-  return data;
+  const { name } = basicInfoData[0];
+
+  if (name.common === "DR Congo") name.common = "Democratic Republic of the Congo";
+
+  const wikiCall = await fetch(
+    `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${name.common}&formatversion=2&exsentences=4&exlimit=1&explaintext=1&origin=*`
+  );
+  const wikiData = await wikiCall.json();
+
+  const [pages] = wikiData.query.pages;
+
+  return [...basicInfoData, pages];
 };
 
 export const fetchLands = async (options) => {
