@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CircularProgress,
+  Divider,
   IconButton,
   Link,
   Paper,
@@ -34,6 +35,8 @@ const DisplayInfo = () => {
     languages = {},
   } = basicInfo[0] || {};
 
+  const { extract = "No informaton" } = basicInfo[1] || {};
+
   const handleNumberFormat = (number = 0) => {
     return new Intl.NumberFormat("en", { notation: "compact" }).format(number);
   };
@@ -52,25 +55,45 @@ const DisplayInfo = () => {
     displayInfo.style("transform", "translateX(500px)");
   };
 
-  const cardContent = (
+  const aboutCard = (
     <Card>
       <CardContent>
+        <h2 style={titleStyles}>About Country</h2>
+        <Divider />
+
         <Typography variant="h6" component={"p"}>
           Country: {name.common}
         </Typography>
+
         <Typography variant="h6">Capital: {capital}</Typography>
+
         <Typography variant="h6">
           Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
         </Typography>
+
         <Typography variant="h6">Population: {handleNumberFormat(population)}</Typography>
+
         <Typography variant="h6">Area: {handleNumberFormat(area)}</Typography>
+      </CardContent>
+    </Card>
+  );
+
+  const descriptionCard = (
+    <Card>
+      <CardContent>
+        <h2 style={titleStyles}>Description</h2>
+        <Divider />
+
+        <Typography variant="h6" component={"p"}>
+          {extract}
+        </Typography>
       </CardContent>
     </Card>
   );
 
   return (
     <Paper className="info-displayer" ref={displayInfoRef} sx={conatinerStyles} square>
-      <aside style={{textAlign: "center"}}>
+      <aside style={{ textAlign: "center" }}>
         <Box sx={buttonWrapperStyles}>
           <IconButton
             onClick={handleClick}
@@ -100,11 +123,13 @@ const DisplayInfo = () => {
           </ButtonGroup>
         </Box>
 
-        <h2 style={titleStyles}>About Country</h2>
-
-        {spinner ? <CircularProgress /> : cardContent}
-
-        <div>test 2</div>
+        {spinner ? (
+          <CircularProgress
+            sx={{ position: "absolute", top: "50%", left: "50%", display: { xs: "none", md: "inline-block" } }}
+          />
+        ) : (
+          [aboutCard, descriptionCard]
+        )}
       </aside>
     </Paper>
   );

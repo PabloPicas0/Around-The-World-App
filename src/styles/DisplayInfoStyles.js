@@ -1,4 +1,6 @@
 export const conatinerStyles = {
+  position: "relative",
+  overflowY: { xs: "none", md: "scroll" },
   transition: "transform 250ms ease-in-out",
   width: { xs: "auto", md: "400px" },
   zIndex: 1337,
