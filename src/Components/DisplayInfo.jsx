@@ -56,35 +56,41 @@ const DisplayInfo = () => {
   };
 
   const aboutCard = (
-    <Card>
+    <Card sx={{ marginTop: "20px" }}>
       <CardContent>
         <h2 style={titleStyles}>About Country</h2>
         <Divider />
 
-        <Typography variant="h6" component={"p"}>
+        <Typography variant="h6" component={"p"} marginY={"5px"}>
           Country: {name.common}
         </Typography>
 
-        <Typography variant="h6">Capital: {capital}</Typography>
+        <Typography variant="h6" marginY={"5px"}>
+          Capital: {capital}
+        </Typography>
 
-        <Typography variant="h6">
+        <Typography variant="h6" marginY={"5px"}>
           Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
         </Typography>
 
-        <Typography variant="h6">Population: {handleNumberFormat(population)}</Typography>
+        <Typography variant="h6" marginY={"5px"}>
+          Population: {handleNumberFormat(population)}
+        </Typography>
 
-        <Typography variant="h6">Area: {handleNumberFormat(area)}</Typography>
+        <Typography variant="h6" marginY={"5px"}>
+          Area: {handleNumberFormat(area)}
+        </Typography>
       </CardContent>
     </Card>
   );
 
   const descriptionCard = (
-    <Card>
+    <Card sx={{ marginTop: "20px" }}>
       <CardContent>
         <h2 style={titleStyles}>Description</h2>
         <Divider />
 
-        <Typography variant="h6" component={"p"}>
+        <Typography variant="h6" component={"p"} marginY={"20px"} lineHeight={"35px"}>
           {extract}
         </Typography>
       </CardContent>
@@ -125,7 +131,12 @@ const DisplayInfo = () => {
 
         {spinner ? (
           <CircularProgress
-            sx={{ position: "absolute", top: "50%", left: "50%", display: { xs: "none", md: "inline-block" } }}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              display: { xs: "none", md: "inline-block" },
+            }}
           />
         ) : (
           [aboutCard, descriptionCard]

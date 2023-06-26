@@ -10,9 +10,8 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
-// Add spacing between cards
-// add spacing between card and social media on mobile
 // abstract styles on displayInfo component
+
 const theme = createTheme({
   breakpoints: {
     values: {
