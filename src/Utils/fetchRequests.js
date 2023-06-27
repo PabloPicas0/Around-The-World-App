@@ -9,6 +9,7 @@ export const makeInfoCall = async (id) => {
   const { name } = basicInfoData[0];
 
   if (name.common === "DR Congo") name.common = "Democratic Republic of the Congo";
+  if (name.common === "Czechia") name.common = "Czech Republic";
 
   const wikiCall = await fetch(
     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${name.common}&formatversion=2&exsentences=4&exlimit=1&explaintext=1&origin=*`

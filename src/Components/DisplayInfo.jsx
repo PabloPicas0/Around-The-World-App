@@ -44,8 +44,8 @@ const DisplayInfo = () => {
 
   const { extract = "No informaton" } = basicInfo[1] || {};
 
-  const handleNumberFormat = (number = 0) => {
-    return new Intl.NumberFormat("en", { notation: "compact" }).format(number);
+  const handleNumberFormat = (number = 0, options) => {
+    return new Intl.NumberFormat("en", options).format(number);
   };
 
   const handleLanguages = (language = { test: 0 }) => {
@@ -84,19 +84,19 @@ const DisplayInfo = () => {
         </Typography>
 
         <Typography variant="h6" marginY={"5px"}>
-          Currency: {handleCurrency(currencies)}
-        </Typography>
-
-        <Typography variant="h6" marginY={"5px"}>
           Languages: {handleLanguages(languages).map((language) => `${language[1]}, `)}
         </Typography>
 
         <Typography variant="h6" marginY={"5px"}>
-          Population: {handleNumberFormat(population)}
+          Currency: {handleCurrency(currencies)}
         </Typography>
 
         <Typography variant="h6" marginY={"5px"}>
-          Area: {handleNumberFormat(area)}
+          Population: {handleNumberFormat(population, { notation: "compact" })}
+        </Typography>
+
+        <Typography variant="h6" marginY={"5px"}>
+          Area: {`${handleNumberFormat(area, { style: "unit", unit: "kilometer" })}²`}
         </Typography>
       </CardContent>
     </Card>

@@ -10,7 +10,7 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
-// abstract styles on displayInfo component
+// Add dark/light mode
 
 const theme = createTheme({
   breakpoints: {
