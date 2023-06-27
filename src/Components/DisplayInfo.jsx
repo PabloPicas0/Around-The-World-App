@@ -32,6 +32,7 @@ const DisplayInfo = () => {
     population = 0,
     area = 0,
     capital = "No information",
+    currencies = "No information",
     languages = {},
   } = basicInfo[0] || {};
 
@@ -47,6 +48,13 @@ const DisplayInfo = () => {
     if (convertedLanguage.length === 0) return [["lang", "No information"]];
 
     return convertedLanguage;
+  };
+
+  const handleCurrency = (currency) => {
+    const [key] = Object.keys(currency);
+    const { name = "No information" } = currency[key];
+
+    return name;
   };
 
   const handleClick = () => {
@@ -67,6 +75,10 @@ const DisplayInfo = () => {
 
         <Typography variant="h6" marginY={"5px"}>
           Capital: {capital}
+        </Typography>
+
+        <Typography variant="h6" marginY={"5px"}>
+          Currency: {handleCurrency(currencies)}
         </Typography>
 
         <Typography variant="h6" marginY={"5px"}>
