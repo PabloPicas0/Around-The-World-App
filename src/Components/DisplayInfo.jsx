@@ -70,7 +70,7 @@ const DisplayInfo = () => {
   };
 
   const aboutCard = (
-    <Card sx={{ marginTop: "20px" }}>
+    <Card sx={{ marginTop: "20px" }} key={"aboutCard"}>
       <CardContent>
         <h2 style={titleStyles}>About Country</h2>
         <Divider />
@@ -103,7 +103,7 @@ const DisplayInfo = () => {
   );
 
   const descriptionCard = (
-    <Card sx={{ marginTop: "20px" }}>
+    <Card sx={{ marginTop: "20px" }} key={"descriptionCard"}>
       <CardContent>
         <h2 style={titleStyles}>Description</h2>
         <Divider />
