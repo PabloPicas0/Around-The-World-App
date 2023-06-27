@@ -12,7 +12,13 @@ import {
 } from "@mui/material";
 import { CloseSharp, Language } from "@mui/icons-material";
 
-import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
+import {
+  buttonStyles,
+  buttonWrapperStyles,
+  conatinerStyles,
+  progressStyles,
+  titleStyles,
+} from "../styles/DisplayInfoStyles";
 
 import { useParams } from "../Utils/context";
 import useOnScreen from "../Utils/detectVisibility";
@@ -141,18 +147,7 @@ const DisplayInfo = () => {
           </ButtonGroup>
         </Box>
 
-        {spinner ? (
-          <CircularProgress
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              display: { xs: "none", md: "inline-block" },
-            }}
-          />
-        ) : (
-          [aboutCard, descriptionCard]
-        )}
+        {spinner ? <CircularProgress sx={progressStyles} /> : [aboutCard, descriptionCard]}
       </aside>
     </Paper>
   );

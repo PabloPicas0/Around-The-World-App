@@ -21,3 +21,10 @@ export const buttonStyles = {
 export const titleStyles = {
   textAlign: "center",
 };
+
+export const progressStyles = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  display: { xs: "none", md: "inline-block" },
+};
