@@ -141,7 +141,7 @@ const Navbar = () => {
   };
 
   return (
-    <Paper sx={navbarContainer} square>
+    <Paper sx={navbarContainer} elevation={1} square>
       <Stack direction={"row"} sx={navbarWrapperStyles}>
         <IconButton sx={{ ...iconStyles, display: { xs: "none", md: "inline-flex" } }} disabled>
           <Language fontSize="large" />
