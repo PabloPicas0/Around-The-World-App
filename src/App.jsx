@@ -4,25 +4,31 @@ import DisplayInfo from "./Components/DisplayInfo";
 
 import "./App.css";
 
-import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
+import { Box, Container, ScopedCssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { useParams } from "./Utils/context";
+import { useMemo } from "react";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
 // Add dark/light mode
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 400,
-      md: 960,
-      lg: 1100,
-      xl: 1536,
-    },
-  },
-});
-
 function App() {
+  const { mode } = useParams();
+
+  const theme = useMemo(() => {
+    return createTheme({
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 400,
+          md: 960,
+          lg: 1100,
+          xl: 1536,
+        },
+      },
+    });
+  }, [mode]);
+
   const boxStyles = {
     display: "grid",
     gridTemplateColumns: { xs: "1fr", md: "auto 500px" },
@@ -33,7 +39,8 @@ function App() {
   };
 
   return (
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <ScopedCssBaseline enableColorScheme>
         <Container disableGutters maxWidth={false}>
           <Box sx={boxStyles}>
             <Navbar />
@@ -41,7 +48,8 @@ function App() {
             <DisplayInfo />
           </Box>
         </Container>
-      </ThemeProvider>
+      </ScopedCssBaseline>
+    </ThemeProvider>
   );
 }
 
