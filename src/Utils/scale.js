@@ -6,7 +6,7 @@ export default function getScale() {
   }
 
   if (innerWidth > 520 && innerWidth < 1430) {
-    return 300;
+    return 400;
   }
 
   if (innerWidth <= 520) {

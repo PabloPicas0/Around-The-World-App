@@ -27,7 +27,7 @@ const theme = createTheme({
 function App() {
   const boxStyles = {
     display: "grid",
-    gridTemplateColumns: { xs: "1fr", md: "auto 400px" },
+    gridTemplateColumns: { xs: "1fr", md: "auto 500px" },
     gridTemplateRows: "auto 1fr",
     height: "100vh",
     minHeight: "100vh",

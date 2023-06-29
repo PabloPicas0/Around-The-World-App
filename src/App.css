@@ -1,5 +1,4 @@
 .world-wrapper {
-  padding: 2rem;
   justify-self: last baseline;
   align-self: center;
   text-align: center;
@@ -65,7 +64,7 @@
 
 @media (width < 1430px) {
   #world-map {
-    width: 660px;
+    width: 600px;
   }
 }
 
@@ -76,7 +75,7 @@
   }
 
   #world-map {
-    width: 520px;
+    width: 420px;
     height: 400px;
   }
 

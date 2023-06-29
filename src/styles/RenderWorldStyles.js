@@ -1,5 +1,5 @@
 export const worldWrapperStyles = { 
-  height: { xs: "75vh", md: "auto" } 
+  height: { xs: "70vh", md: "auto" } 
 };
 
 export const tooltipStyles = {
