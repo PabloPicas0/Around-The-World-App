@@ -177,7 +177,7 @@ const Navbar = () => {
             );
           })}
 
-          <Tooltip key={"colorMode"} title={"Switch color"} arrow>
+          <Tooltip key={"colorMode"} title={"Light/Dark mode"} arrow>
             <IconButton sx={iconStyles}>
               <Brightness4Sharp />
             </IconButton>
