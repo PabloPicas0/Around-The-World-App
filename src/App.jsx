@@ -7,6 +7,7 @@ import "./App.css";
 import { Box, Container, ScopedCssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useParams } from "./Utils/context";
 import { useMemo } from "react";
+import getDesignTokens from "./Utils/designMode";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
@@ -26,6 +27,10 @@ function App() {
           xl: 1536,
         },
       },
+      palette: {
+        mode: mode,
+        ...getDesignTokens(mode)
+      }
     });
   }, [mode]);
 

@@ -9,7 +9,7 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
-import { Brightness4Sharp, Language, Replay } from "@mui/icons-material";
+import { Brightness4Sharp, Brightness7Sharp, Language, Replay } from "@mui/icons-material";
 
 import {
   iconStyles,
@@ -31,7 +31,7 @@ import getScale from "../Utils/scale";
 import { makeInfoCall } from "../Utils/fetchRequests";
 
 const Navbar = () => {
-  const { countryData, setSpinner, setBasicInfo, svgRef } = useParams();
+  const { countryData, setSpinner, setBasicInfo, svgRef, mode ,setMode } = useParams();
 
   const autoComplete = useRef(null);
 
@@ -141,7 +141,7 @@ const Navbar = () => {
   };
 
   return (
-    <Paper sx={navbarContainer} elevation={1} square>
+    <Paper sx={navbarContainer} elevation={mode === "light" ? 1 : 7} square>
       <Stack direction={"row"} sx={navbarWrapperStyles}>
         <IconButton sx={{ ...iconStyles, display: { xs: "none", md: "inline-flex" } }} disabled>
           <Language fontSize="large" />
@@ -158,7 +158,7 @@ const Navbar = () => {
           />
 
           <Tooltip title="Reset" arrow>
-            <IconButton sx={iconStyles} onClick={handleReset}>
+            <IconButton sx={iconStyles} color="secondary" onClick={handleReset}>
               <Replay />
             </IconButton>
           </Tooltip>
@@ -171,15 +171,20 @@ const Navbar = () => {
             return (
               <Tooltip key={idx} title={description} arrow>
                 <Link href={href} target="_blank">
-                  <IconButton sx={iconStyles}>{icon}</IconButton>
+                  <IconButton sx={iconStyles} color="secondary">
+                    {icon}
+                  </IconButton>
                 </Link>
               </Tooltip>
             );
           })}
 
           <Tooltip key={"colorMode"} title={"Light/Dark mode"} arrow>
-            <IconButton sx={iconStyles}>
-              <Brightness4Sharp />
+            <IconButton
+              sx={iconStyles}
+              color="secondary"
+              onClick={() => setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))}>
+              {mode === "light" ? <Brightness4Sharp /> : <Brightness7Sharp />}
             </IconButton>
           </Tooltip>
         </ButtonGroup>

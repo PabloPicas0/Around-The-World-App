@@ -28,7 +28,7 @@ import { useRef } from "react";
 import { links } from "../Utils/sheredData";
 
 const DisplayInfo = () => {
-  const { basicInfo, spinner } = useParams();
+  const { basicInfo, spinner, mode } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
@@ -70,7 +70,7 @@ const DisplayInfo = () => {
   };
 
   const aboutCard = (
-    <Card sx={{ marginTop: "20px" }} elevation={3} key={"aboutCard"}>
+    <Card sx={{ marginTop: "20px" }} elevation={mode === "light" ? 3 : 7} key={"aboutCard"}>
       <CardContent>
         <h2 style={titleStyles}>About Country</h2>
         <Divider />
@@ -103,7 +103,7 @@ const DisplayInfo = () => {
   );
 
   const descriptionCard = (
-    <Card sx={{ marginTop: "20px" }} elevation={3} key={"descriptionCard"}>
+    <Card sx={{ marginTop: "20px" }} elevation={mode === "light" ? 3 : 7} key={"descriptionCard"}>
       <CardContent>
         <h2 style={titleStyles}>Description</h2>
         <Divider />
@@ -122,7 +122,8 @@ const DisplayInfo = () => {
           <IconButton
             onClick={handleClick}
             sx={{ ...buttonStyles, display: { xs: "none", md: "inline-flex" } }}
-            tabIndex={isVisible ? 0 : -1}>
+            tabIndex={isVisible ? 0 : -1}
+            color="secondary">
             <CloseSharp fontSize="large" />
           </IconButton>
 
