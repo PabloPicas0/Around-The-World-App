@@ -15,7 +15,6 @@ export const buttonWrapperStyles = {
 export const buttonStyles = {
   width: "38px",
   height: "38px",
-  color: "black",
 };
 
 export const titleStyles = {
