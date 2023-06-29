@@ -2,8 +2,6 @@ import RenderWorld from "./Components/RenderWorld";
 import Navbar from "./Components/Navbar";
 import DisplayInfo from "./Components/DisplayInfo";
 
-import { ParamsProvider } from "./Utils/context";
-
 import "./App.css";
 
 import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
@@ -35,7 +33,6 @@ function App() {
   };
 
   return (
-    <ParamsProvider>
       <ThemeProvider theme={theme}>
         <Container disableGutters maxWidth={false}>
           <Box sx={boxStyles}>
@@ -45,7 +42,6 @@ function App() {
           </Box>
         </Container>
       </ThemeProvider>
-    </ParamsProvider>
   );
 }
 
