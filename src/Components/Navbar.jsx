@@ -9,7 +9,7 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
-import { Language, Replay } from "@mui/icons-material";
+import { Brightness4Sharp, Language, Replay } from "@mui/icons-material";
 
 import {
   iconStyles,
@@ -75,13 +75,13 @@ const Navbar = () => {
 
       const { id } = selectedCountry.data()[0];
 
-      setSpinner(true)
+      setSpinner(true);
 
-      makeInfoCall(id).then(info => {
+      makeInfoCall(id).then((info) => {
         setTimeout(() => {
-          setBasicInfo(info)
-          setSpinner(false)
-        }, 500)
+          setBasicInfo(info);
+          setSpinner(false);
+        }, 500);
       });
 
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
@@ -113,7 +113,7 @@ const Navbar = () => {
     const transform = d3.zoomTransform(svg.node());
     const displayInfo = d3.select(".info-displayer");
 
-    // Prevents from hiding DisplayInfo component on devices width smaller than 960px 
+    // Prevents from hiding DisplayInfo component on devices width smaller than 960px
     if (window.innerWidth >= 960) displayInfo.style("transform", "translateX(500px)");
 
     checkedCountry.classed("checked", false);
@@ -176,6 +176,12 @@ const Navbar = () => {
               </Tooltip>
             );
           })}
+
+          <Tooltip key={"colorMode"} title={"Switch color"} arrow>
+            <IconButton sx={iconStyles}>
+              <Brightness4Sharp />
+            </IconButton>
+          </Tooltip>
         </ButtonGroup>
       </Stack>
     </Paper>

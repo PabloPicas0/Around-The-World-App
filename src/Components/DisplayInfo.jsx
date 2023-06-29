@@ -10,7 +10,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { CloseSharp, Language } from "@mui/icons-material";
+import { Brightness4Sharp, CloseSharp, Language } from "@mui/icons-material";
 
 import {
   buttonStyles,
@@ -144,6 +144,10 @@ const DisplayInfo = () => {
                 </Link>
               );
             })}
+
+            <IconButton sx={buttonStyles}>
+              <Brightness4Sharp />
+            </IconButton>
           </ButtonGroup>
         </Box>
 
