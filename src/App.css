@@ -5,13 +5,13 @@
 }
 
 .sphere {
-  fill: none;
+  fill: white;
   stroke: rgba(0, 0, 0, 0.1);
   stroke-width: 1px;
 }
 
 .country {
-  fill: var(--main-gray);
+  fill: var(--dark-800);
   stroke: var(--main-white);
   stroke-width: 0.5px;
   stroke-linejoin: round;
