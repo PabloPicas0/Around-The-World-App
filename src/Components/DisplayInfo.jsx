@@ -10,7 +10,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { Brightness4Sharp, CloseSharp, Language } from "@mui/icons-material";
+import { Brightness4Sharp, Brightness7Sharp, CloseSharp, Language } from "@mui/icons-material";
 
 import {
   buttonStyles,
@@ -28,7 +28,7 @@ import { useRef } from "react";
 import { links } from "../Utils/sheredData";
 
 const DisplayInfo = () => {
-  const { basicInfo, spinner, mode } = useParams();
+  const { basicInfo, spinner, mode, setMode } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
@@ -146,8 +146,10 @@ const DisplayInfo = () => {
               );
             })}
 
-            <IconButton sx={buttonStyles}>
-              <Brightness4Sharp />
+            <IconButton
+              sx={buttonStyles}
+              onClick={() => setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))}>
+              {mode === "light" ? <Brightness4Sharp /> : <Brightness7Sharp />}
             </IconButton>
           </ButtonGroup>
         </Box>
