@@ -11,7 +11,6 @@ import getDesignTokens from "./Utils/designMode";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
-// Add dark/light mode
 
 function App() {
   const { mode } = useParams();

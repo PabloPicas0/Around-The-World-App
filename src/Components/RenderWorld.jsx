@@ -40,7 +40,7 @@ const RenderWorld = () => {
       .on("drag", (e) => {
         // projection.rotate() give us array with x, y, z coordinates
         const [x, y] = projection.rotate();
-        const sens = 80 / projection.scale();
+        const sens = 65 / projection.scale();
 
         // We are changing projection coordinates taking old coords
         // And adding ammount of x and y from cursor on drag event
