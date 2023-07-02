@@ -5,9 +5,13 @@ import DisplayInfo from "./Components/DisplayInfo";
 import "./App.css";
 
 import { Box, Container, ScopedCssBaseline, ThemeProvider, createTheme } from "@mui/material";
+
 import { useParams } from "./Utils/context";
+
 import { useMemo } from "react";
+
 import getDesignTokens from "./Utils/designMode";
+import ImageDialog from "./Components/ImageDialog";
 
 // TODO
 // Add third API with news or someting like that about country https://api.unsplash.com/
@@ -28,8 +32,8 @@ function App() {
       },
       palette: {
         mode: mode,
-        ...getDesignTokens(mode)
-      }
+        ...getDesignTokens(mode),
+      },
     });
   }, [mode]);
 
@@ -50,6 +54,7 @@ function App() {
             <Navbar />
             <RenderWorld />
             <DisplayInfo />
+            <ImageDialog />
           </Box>
         </Container>
       </ScopedCssBaseline>

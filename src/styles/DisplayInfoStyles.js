@@ -3,7 +3,6 @@ export const conatinerStyles = {
   overflowY: { xs: "visible", md: "auto" },
   transition: "transform 250ms ease-in-out",
   width: { xs: "auto", md: "500px" },
-  zIndex: 1337,
   transform: { xs: "none", md: "translateX(500px)" },
 };
 

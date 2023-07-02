@@ -30,7 +30,7 @@ import { useRef } from "react";
 import { links } from "../Utils/sheredData";
 
 const DisplayInfo = () => {
-  const { basicInfo, spinner, mode, setMode, images } = useParams();
+  const { basicInfo, spinner, mode, setMode, images, setImageIndex, setOpen } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
@@ -70,6 +70,11 @@ const DisplayInfo = () => {
 
     displayInfo.style("transform", "translateX(500px)");
   };
+
+  const handleImage = (idx) => {
+    setImageIndex(idx)
+    setOpen(true)
+  }
 
   const aboutCard = (
     <Card sx={{ marginTop: "20px" }} elevation={mode === "light" ? 3 : 7} key={"aboutCard"}>
@@ -159,16 +164,12 @@ const DisplayInfo = () => {
         {spinner ? <CircularProgress sx={progressStyles} /> : [aboutCard, descriptionCard]}
 
         <ImageList cols={3} rowHeight={165} variant="mansonary">
-          {images.map((image) => {
+          {images.map((image, idx) => {
             const { id, urls, alt_description } = image;
 
             return (
-              <ImageListItem key={id} sx={{ border: "1px solid #616161" }}>
-                <img
-                  src={`${urls.small}`}
-                  alt={alt_description}
-                  loading="lazy"
-                />
+              <ImageListItem key={id} sx={{ border: "1px solid #616161", cursor: "pointer" }} onClick={() => handleImage(idx) }>
+                <img src={urls.small} alt={alt_description} loading="lazy"/>
               </ImageListItem>
             );
           })}
