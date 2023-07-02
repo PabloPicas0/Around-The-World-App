@@ -19,7 +19,7 @@ const fetchWiki = async (name) => {
 };
 
 const fetchImages = async (name) => {
-  const imagesRequest = await fetch(`https://api.unsplash.com/search/photos/?query=${name}&per_page=8`, {
+  const imagesRequest = await fetch(`https://api.unsplash.com/search/photos/?query=${name}&per_page=12`, {
     headers: {
       Authorization: `Client-ID ${import.meta.env.VITE_ACCESS_KEY}`,
     },

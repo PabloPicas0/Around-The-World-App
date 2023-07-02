@@ -6,6 +6,8 @@ import {
   CircularProgress,
   Divider,
   IconButton,
+  ImageList,
+  ImageListItem,
   Link,
   Paper,
   Typography,
@@ -155,6 +157,22 @@ const DisplayInfo = () => {
         </Box>
 
         {spinner ? <CircularProgress sx={progressStyles} /> : [aboutCard, descriptionCard]}
+
+        <ImageList cols={3} rowHeight={165} variant="mansonary">
+          {images.map((image) => {
+            const { id, urls, alt_description } = image;
+
+            return (
+              <ImageListItem key={id} sx={{ border: "1px solid #616161" }}>
+                <img
+                  src={`${urls.small}`}
+                  alt={alt_description}
+                  loading="lazy"
+                />
+              </ImageListItem>
+            );
+          })}
+        </ImageList>
       </aside>
     </Paper>
   );
