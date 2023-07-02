@@ -41,7 +41,7 @@ export const makeInfoCall = async (id) => {
   const extract = await fetchWiki(name.common);
   const images = await fetchImages(name.common);
 
-  return [...basicInfoData, { extract: extract }];
+  return [...basicInfoData, { extract: extract }, images.results];
 };
 
 export const fetchLands = async (options) => {

@@ -9,9 +9,10 @@ export const useParams = () => {
 
 export const ParamsProvider = ({ children }) => {
   const [countryData, setCountryData] = useState(null);
-  const [basicInfo, setBasicInfo] = useState({});
-  const [spinner, setSpinner] = useState(false)
-  const [mode, setMode] = useState("light")
+  const [basicInfo, setBasicInfo] = useState([]);
+  const [images, setImages] = useState([])
+  const [spinner, setSpinner] = useState(false);
+  const [mode, setMode] = useState("light");
 
   const svgRef = useRef(null);
 
@@ -28,7 +29,18 @@ export const ParamsProvider = ({ children }) => {
 
   return (
     <context.Provider
-      value={{ countryData, svgRef, basicInfo, setBasicInfo, spinner, setSpinner, mode, setMode }}>
+      value={{
+        countryData,
+        svgRef,
+        basicInfo,
+        setBasicInfo,
+        spinner,
+        setSpinner,
+        mode,
+        setMode,
+        images,
+        setImages,
+      }}>
       {children}
     </context.Provider>
   );

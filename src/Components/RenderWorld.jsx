@@ -26,7 +26,7 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, svgRef, setBasicInfo, setSpinner } = useParams();
+  const { countryData, svgRef, setBasicInfo, setSpinner, setImages } = useParams();
 
   useEffect(() => {
     if (!countryData) return;
@@ -87,8 +87,11 @@ const RenderWorld = () => {
       setSpinner(true);
 
       makeInfoCall(id).then((info) => {
+        const [basicInfo, wikiDescription, images] = info;
+
         setTimeout(() => {
-          setBasicInfo(info);
+          setBasicInfo([basicInfo, wikiDescription]);
+          setImages(images);
           setSpinner(false);
         }, 500);
       });

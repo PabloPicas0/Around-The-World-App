@@ -28,7 +28,7 @@ import { useRef } from "react";
 import { links } from "../Utils/sheredData";
 
 const DisplayInfo = () => {
-  const { basicInfo, spinner, mode, setMode } = useParams();
+  const { basicInfo, spinner, mode, setMode, images } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
