@@ -72,9 +72,9 @@ const DisplayInfo = () => {
   };
 
   const handleImage = (idx) => {
-    setImageIndex(idx)
-    setOpen(true)
-  }
+    setImageIndex(idx);
+    setOpen(true);
+  };
 
   const aboutCard = (
     <Card sx={{ marginTop: "20px" }} elevation={mode === "light" ? 3 : 7} key={"aboutCard"}>
@@ -122,6 +122,23 @@ const DisplayInfo = () => {
     </Card>
   );
 
+  const imagesCard = (
+    <ImageList cols={3} rowHeight={165} variant="mansonary" key={"imagesCard"}>
+      {images.map((image, idx) => {
+        const { id, urls, alt_description } = image;
+
+        return (
+          <ImageListItem
+            key={id}
+            sx={{ border: "1px solid #616161", cursor: "pointer" }}
+            onClick={() => handleImage(idx)}>
+            <img src={urls.small} alt={alt_description} loading="lazy" />
+          </ImageListItem>
+        );
+      })}
+    </ImageList>
+  );
+
   return (
     <Paper className="info-displayer" ref={displayInfoRef} sx={conatinerStyles} square>
       <aside style={{ textAlign: "center" }}>
@@ -161,19 +178,7 @@ const DisplayInfo = () => {
           </ButtonGroup>
         </Box>
 
-        {spinner ? <CircularProgress sx={progressStyles} /> : [aboutCard, descriptionCard]}
-
-        <ImageList cols={3} rowHeight={165} variant="mansonary">
-          {images.map((image, idx) => {
-            const { id, urls, alt_description } = image;
-
-            return (
-              <ImageListItem key={id} sx={{ border: "1px solid #616161", cursor: "pointer" }} onClick={() => handleImage(idx) }>
-                <img src={urls.small} alt={alt_description} loading="lazy"/>
-              </ImageListItem>
-            );
-          })}
-        </ImageList>
+        {spinner ? <CircularProgress sx={progressStyles} /> : [aboutCard, descriptionCard, imagesCard]}
       </aside>
     </Paper>
   );

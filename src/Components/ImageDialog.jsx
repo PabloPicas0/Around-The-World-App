@@ -7,7 +7,6 @@ const ImageDialog = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(images[imageIndex]);
 
   if (images.length === 0) {
     return;
