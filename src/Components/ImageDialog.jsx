@@ -1,5 +1,8 @@
 import { Card, CardContent, CardMedia, Dialog, Typography } from "@mui/material";
+
 import { useParams } from "../Utils/context";
+
+import { cardContentStyles, cardMediaStyles, cardStyles } from "../styles/ImageDialogStyles";
 
 const ImageDialog = () => {
   const { images, imageIndex, open, setOpen } = useParams();
@@ -14,14 +17,14 @@ const ImageDialog = () => {
 
   return (
     <Dialog onClose={handleClose} open={open} maxWidth={false}>
-      <Card sx={{ maxWidth: "960px" }}>
+      <Card sx={cardStyles}>
         <CardMedia
           component={"img"}
-          sx={{ height: { xs: "450px", sm: "540px" } }}
+          sx={cardMediaStyles}
           src={images[imageIndex].urls.regular}
           alt={images[imageIndex].alt_description}
         />
-        <CardContent style={{ padding: "10px", textAlign: "center " }}>
+        <CardContent style={cardContentStyles}>
           <Typography component={"p"}>
             Photo by{" "}
             <a
