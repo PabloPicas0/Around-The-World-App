@@ -17,6 +17,7 @@ const ImageDialog = () => {
       <Card sx={{ maxWidth: "960px" }}>
         <CardMedia
           component={"img"}
+          sx={{ height: { xs: "450px", sm: "540px" } }}
           src={images[imageIndex].urls.regular}
           alt={images[imageIndex].alt_description}
         />
