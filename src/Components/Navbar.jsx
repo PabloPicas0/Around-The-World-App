@@ -31,7 +31,7 @@ import getScale from "../Utils/scale";
 import { makeInfoCall } from "../Utils/fetchRequests";
 
 const Navbar = () => {
-  const { countryData, setSpinner, setBasicInfo, svgRef, mode ,setMode } = useParams();
+  const { countryData, setSpinner, setBasicInfo, svgRef, mode, setMode, setImages } = useParams();
 
   const autoComplete = useRef(null);
 
@@ -78,8 +78,11 @@ const Navbar = () => {
       setSpinner(true);
 
       makeInfoCall(id).then((info) => {
+        const [basicInfo, wikiDescription, images] = info;
+
         setTimeout(() => {
-          setBasicInfo(info);
+          setBasicInfo([basicInfo, wikiDescription]);
+          setImages(images);
           setSpinner(false);
         }, 500);
       });
