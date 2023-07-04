@@ -13,9 +13,6 @@ import { useMemo } from "react";
 import getDesignTokens from "./Utils/designMode";
 import ImageDialog from "./Components/ImageDialog";
 
-// TODO
-// Add third API with news or someting like that about country https://api.unsplash.com/
-
 function App() {
   const { mode } = useParams();
 
