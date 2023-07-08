@@ -11,9 +11,7 @@ const ImageDialog = () => {
     setOpen(false);
   };
 
-  if (images.length === 0) {
-    return;
-  }
+  if (images.length === 0) return;
 
   return (
     <Dialog onClose={handleClose} open={open} maxWidth={false}>

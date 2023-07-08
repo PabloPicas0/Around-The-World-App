@@ -7,7 +7,6 @@ import {
   Divider,
   IconButton,
   ImageList,
-  ImageListItem,
   Link,
   Paper,
   Typography,
@@ -26,11 +25,15 @@ import { useParams } from "../Utils/context";
 import useOnScreen from "../Utils/detectVisibility";
 
 import * as d3 from "d3";
+
 import { useRef } from "react";
+
 import { links } from "../Utils/sheredData";
 
+import Image from "./Image";
+
 const DisplayInfo = () => {
-  const { basicInfo, spinner, mode, setMode, images, setImageIndex, setOpen } = useParams();
+  const { basicInfo, spinner, mode, setMode, images } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
@@ -69,11 +72,6 @@ const DisplayInfo = () => {
     const displayInfo = d3.select(".info-displayer");
 
     displayInfo.style("transform", "translateX(500px)");
-  };
-
-  const handleImage = (idx) => {
-    setImageIndex(idx);
-    setOpen(true);
   };
 
   const aboutCard = (
@@ -127,14 +125,7 @@ const DisplayInfo = () => {
       {images.map((image, idx) => {
         const { id, urls, alt_description } = image;
 
-        return (
-          <ImageListItem
-            key={id}
-            sx={{ border: "1px solid #616161", cursor: "pointer" }}
-            onClick={() => handleImage(idx)}>
-            <img src={urls.small} alt={alt_description} loading="lazy" />
-          </ImageListItem>
-        );
+        return <Image src={urls.small} alt={alt_description} index={idx} key={id} />;
       })}
     </ImageList>
   );
