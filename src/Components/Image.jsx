@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "../Utils/context";
 
 const Image = (props) => {
-  const { setImageIndex, setOpen } = useParams();
+  const { setImageIndex, setOpen, setIsLoading } = useParams();
 
   const { src, alt, index } = props;
 
@@ -11,16 +11,17 @@ const Image = (props) => {
 
   const handleImage = (idx) => {
     setImageIndex(idx);
+    setIsLoading(true);
     setOpen(true);
   };
 
   return (
-      <ImageListItem
-        sx={{ border: "1px solid #616161", cursor: "pointer", overflowY: "hidden" }}
-        onClick={() => handleImage(index)}>
-        {!isLoaded && <Skeleton variant="rectangular" height={"100%"} />}
-        <img src={src} alt={alt} loading="lazy" onLoad={() => setIsLoaded(true)} />
-      </ImageListItem>
+    <ImageListItem
+      sx={{ border: "1px solid #616161", cursor: "pointer", overflowY: "hidden" }}
+      onClick={() => handleImage(index)}>
+      {!isLoaded && <Skeleton variant="rectangular" height={"100%"} />}
+      <img src={src} alt={alt} loading="lazy" onLoad={() => setIsLoaded(true)} />
+    </ImageListItem>
   );
 };
 

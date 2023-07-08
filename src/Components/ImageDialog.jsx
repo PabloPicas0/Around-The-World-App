@@ -1,11 +1,11 @@
-import { Card, CardContent, CardMedia, Dialog, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Dialog, Skeleton, Typography } from "@mui/material";
 
 import { useParams } from "../Utils/context";
 
 import { cardContentStyles, cardMediaStyles, cardStyles } from "../styles/ImageDialogStyles";
 
 const ImageDialog = () => {
-  const { images, imageIndex, open, setOpen } = useParams();
+  const { images, imageIndex, open, setOpen, isLoading, setIsLoading } = useParams();
 
   const handleClose = () => {
     setOpen(false);
@@ -16,11 +16,13 @@ const ImageDialog = () => {
   return (
     <Dialog onClose={handleClose} open={open} maxWidth={false}>
       <Card sx={cardStyles}>
+        {isLoading && <Skeleton variant="rectangular" animation={"wave"} sx={cardMediaStyles} />}
         <CardMedia
           component={"img"}
-          sx={cardMediaStyles}
+          sx={isLoading ? { display: "none" } : cardMediaStyles}
           src={images[imageIndex].urls.regular}
           alt={images[imageIndex].alt_description}
+          onLoad={() => setIsLoading(false)}
         />
         <CardContent style={cardContentStyles}>
           <Typography component={"p"}>

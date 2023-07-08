@@ -14,7 +14,8 @@ export const ParamsProvider = ({ children }) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [spinner, setSpinner] = useState(false);
   const [mode, setMode] = useState("light");
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const svgRef = useRef(null);
 
@@ -46,6 +47,8 @@ export const ParamsProvider = ({ children }) => {
         setImageIndex,
         open,
         setOpen,
+        isLoading,
+        setIsLoading,
       }}>
       {children}
     </context.Provider>
