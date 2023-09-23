@@ -153,7 +153,7 @@ const DisplayInfo = () => {
               const { href, icon, description } = link;
 
               return (
-                <Link key={idx} href={href} target="_blank">
+                <Link key={`onMobile ${description}`} href={href} target="_blank">
                   <IconButton aria-label={description} sx={buttonStyles}>
                     {icon}
                   </IconButton>
