@@ -172,7 +172,7 @@ const Navbar = () => {
             const { href, icon, description } = link;
 
             return (
-              <Tooltip key={idx} title={description} arrow>
+              <Tooltip key={description} title={description} arrow>
                 <Link href={href} target="_blank">
                   <IconButton sx={iconStyles} color="secondary">
                     {icon}
