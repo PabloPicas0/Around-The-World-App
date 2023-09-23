@@ -20,7 +20,7 @@ const Image = (props) => {
       sx={{ border: "1px solid #616161", cursor: "pointer", overflowY: "hidden" }}
       onClick={() => handleImage(index)}>
       {!isLoaded && <Skeleton variant="rectangular" height={"100%"} />}
-      <img src={src} alt={alt} loading="lazy" onLoad={() => setIsLoaded(true)} />
+      <img src={src} alt={alt} onLoad={() => setIsLoaded(true)} />
     </ImageListItem>
   );
 };
