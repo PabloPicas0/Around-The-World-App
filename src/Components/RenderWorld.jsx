@@ -89,11 +89,9 @@ const RenderWorld = () => {
       makeInfoCall(id).then((info) => {
         const [basicInfo, wikiDescription, images] = info;
 
-        setTimeout(() => {
-          setBasicInfo([basicInfo, wikiDescription]);
-          setImages(images);
-          setSpinner(false);
-        }, 500);
+        setBasicInfo([basicInfo, wikiDescription]);
+        setImages(images);
+        setSpinner(false);
       });
 
       // Get the clicked point in px
