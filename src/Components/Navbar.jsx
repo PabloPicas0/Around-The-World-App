@@ -32,7 +32,8 @@ import getScale from "../Utils/scale";
 import { makeInfoCall } from "../Utils/fetchRequests";
 
 const Navbar = () => {
-  const { countryData, setSpinner, setBasicInfo, svgRef, mode, setMode, setImages, spinner } = useParams();
+  const { countryData, setSpinner, setBasicInfo, svgRef, mode, setMode, setImages, spinner, setShowInfo } =
+    useParams();
 
   const autoComplete = useRef(null);
 
@@ -84,6 +85,7 @@ const Navbar = () => {
         setBasicInfo([basicInfo, wikiDescription]);
         setImages(images);
         setSpinner(false);
+        setShowInfo(true);
       });
 
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;

@@ -13,6 +13,7 @@ export const ParamsProvider = ({ children }) => {
   const [images, setImages] = useState([]);
   const [imageIndex, setImageIndex] = useState(0);
   const [spinner, setSpinner] = useState(false);
+  const [showInfo, setShowInfo] = useState(false)
   const [mode, setMode] = useState("light");
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +50,8 @@ export const ParamsProvider = ({ children }) => {
         setOpen,
         isLoading,
         setIsLoading,
+        showInfo,
+        setShowInfo,
       }}>
       {children}
     </context.Provider>

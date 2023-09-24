@@ -24,7 +24,7 @@ const outline = { type: "Sphere" };
 const graticule = d3.geoGraticule10();
 
 const RenderWorld = () => {
-  const { countryData, svgRef, setBasicInfo, setSpinner, setImages } = useParams();
+  const { countryData, svgRef, setBasicInfo, setSpinner, setImages, setShowInfo } = useParams();
 
   const worldWrapperRef = useRef();
 
@@ -93,6 +93,7 @@ const RenderWorld = () => {
         setBasicInfo([basicInfo, wikiDescription]);
         setImages(images);
         setSpinner(false);
+        setShowInfo(true)
       });
 
       // Get the clicked point in px
@@ -155,7 +156,7 @@ const RenderWorld = () => {
   }, [countryData]);
 
   return (
-    <Box className="world-wrapper" ref={worldWrapperRef}>
+    <Box className="world-wrapper" ref={worldWrapperRef}> 
       <svg ref={svgRef} viewBox={`0 0 ${960} ${600}`} id="world-map"></svg>
       <Box id="tooltip" sx={tooltipStyles}></Box>
     </Box>

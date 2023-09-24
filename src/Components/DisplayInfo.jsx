@@ -26,7 +26,7 @@ import { links } from "../Utils/sheredData";
 import Image from "./Image";
 
 const DisplayInfo = () => {
-  const { basicInfo, spinner, mode, setMode, images } = useParams();
+  const { basicInfo, spinner, mode, setMode, images, showInfo, setShowInfo } = useParams();
 
   const displayInfoRef = useRef(null);
   const isVisible = useOnScreen(displayInfoRef);
@@ -62,9 +62,7 @@ const DisplayInfo = () => {
   };
 
   const handleClick = () => {
-    const displayInfo = d3.select(".info-displayer");
-
-    displayInfo.style("transform", "translateX(500px)");
+    setShowInfo(false)
   };
 
   const aboutCard = (
@@ -129,7 +127,7 @@ const DisplayInfo = () => {
       ref={displayInfoRef}
       sx={{
         ...conatinerStyles,
-        transform: { xs: "none", md: spinner ? "translateX(500px)" : "translateX(0px)" },
+        transform: { xs: "none", md: showInfo ? "translateX(0px)" : "translateX(500px)" },
       }}
       square>
       <aside style={{ textAlign: "center" }}>
