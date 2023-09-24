@@ -3,6 +3,7 @@ import {
   Box,
   ButtonGroup,
   IconButton,
+  LinearProgress,
   Link,
   Paper,
   Stack,
@@ -31,7 +32,7 @@ import getScale from "../Utils/scale";
 import { makeInfoCall } from "../Utils/fetchRequests";
 
 const Navbar = () => {
-  const { countryData, setSpinner, setBasicInfo, svgRef, mode, setMode, setImages } = useParams();
+  const { countryData, setSpinner, setBasicInfo, svgRef, mode, setMode, setImages, spinner } = useParams();
 
   const autoComplete = useRef(null);
 
@@ -80,11 +81,9 @@ const Navbar = () => {
       makeInfoCall(id).then((info) => {
         const [basicInfo, wikiDescription, images] = info;
 
-        setTimeout(() => {
-          setBasicInfo([basicInfo, wikiDescription]);
-          setImages(images);
-          setSpinner(false);
-        }, 500);
+        setBasicInfo([basicInfo, wikiDescription]);
+        setImages(images);
+        setSpinner(false);
       });
 
       const { coordinates } = selectedCountry._groups[0][0].__data__.geometry;
@@ -192,6 +191,7 @@ const Navbar = () => {
           </Tooltip>
         </ButtonGroup>
       </Stack>
+      {spinner ? <LinearProgress sx={{ height: "2px" }} /> : null}
     </Paper>
   );
 };
