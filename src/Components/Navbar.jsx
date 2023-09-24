@@ -123,7 +123,7 @@ const Navbar = () => {
     transform.k = 1;
 
     setShowInfo(false);
-    
+
     d3.transition()
       .duration(700)
       .tween("reset", function () {
