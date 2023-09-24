@@ -17,8 +17,6 @@ import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from 
 import { useParams } from "../Utils/context";
 import useOnScreen from "../Utils/detectVisibility";
 
-import * as d3 from "d3";
-
 import { useRef } from "react";
 
 import { links } from "../Utils/sheredData";
