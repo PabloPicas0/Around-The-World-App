@@ -78,11 +78,9 @@ const RenderWorld = () => {
 
       const prevCountry = d3.select(".checked");
       const nextCountry = d3.select(`#${e.target.id}`);
-      const displayInfo = d3.select(".info-displayer");
 
       prevCountry.classed("checked", false);
       nextCountry.classed("checked", true);
-      displayInfo.style("transform", "translateX(0px)");
 
       setSpinner(true);
 
