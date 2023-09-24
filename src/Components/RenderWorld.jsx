@@ -86,6 +86,7 @@ const RenderWorld = () => {
       nextCountry.classed("checked", true);
 
       setSpinner(true);
+      setShowInfo(false)
 
       makeInfoCall(id).then((info) => {
         const [basicInfo, wikiDescription, images] = info;
