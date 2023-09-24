@@ -13,6 +13,15 @@ import { useMemo } from "react";
 import getDesignTokens from "./Utils/designMode";
 import ImageDialog from "./Components/ImageDialog";
 
+const boxStyles = {
+  display: "grid",
+  gridTemplateColumns: { xs: "1fr", md: "auto 500px" },
+  gridTemplateRows: "auto 1fr",
+  height: "100vh",
+  minHeight: "100vh",
+  overflowX: "hidden",
+};
+
 function App() {
   const { mode } = useParams();
 
@@ -33,15 +42,6 @@ function App() {
       },
     });
   }, [mode]);
-
-  const boxStyles = {
-    display: "grid",
-    gridTemplateColumns: { xs: "1fr", md: "auto 500px" },
-    gridTemplateRows: "auto 1fr",
-    height: "100vh",
-    minHeight: "100vh",
-    overflowX: "hidden",
-  };
 
   return (
     <ThemeProvider theme={theme}>
