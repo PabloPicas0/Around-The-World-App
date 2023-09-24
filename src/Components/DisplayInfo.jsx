@@ -3,7 +3,6 @@ import {
   ButtonGroup,
   Card,
   CardContent,
-  CircularProgress,
   Divider,
   IconButton,
   ImageList,
@@ -13,13 +12,7 @@ import {
 } from "@mui/material";
 import { Brightness4Sharp, Brightness7Sharp, CloseSharp, Language } from "@mui/icons-material";
 
-import {
-  buttonStyles,
-  buttonWrapperStyles,
-  conatinerStyles,
-  progressStyles,
-  titleStyles,
-} from "../styles/DisplayInfoStyles";
+import { buttonStyles, buttonWrapperStyles, conatinerStyles, titleStyles } from "../styles/DisplayInfoStyles";
 
 import { useParams } from "../Utils/context";
 import useOnScreen from "../Utils/detectVisibility";
@@ -81,7 +74,7 @@ const DisplayInfo = () => {
         <Divider />
 
         <Typography variant="h6" component={"p"} marginY={"5px"}>
-          Country: {name.common}
+          Country: {name.common || name}
         </Typography>
 
         <Typography variant="h6" marginY={"5px"}>
@@ -131,7 +124,14 @@ const DisplayInfo = () => {
   );
 
   return (
-    <Paper className="info-displayer" ref={displayInfoRef} sx={conatinerStyles} square>
+    <Paper
+      className="info-displayer"
+      ref={displayInfoRef}
+      sx={{
+        ...conatinerStyles,
+        transform: { xs: "none", md: spinner ? "translateX(500px)" : "translateX(0px)" },
+      }}
+      square>
       <aside style={{ textAlign: "center" }}>
         <Box sx={buttonWrapperStyles}>
           <IconButton
@@ -169,7 +169,7 @@ const DisplayInfo = () => {
           </ButtonGroup>
         </Box>
 
-        {spinner ? <CircularProgress sx={progressStyles} /> : [aboutCard, descriptionCard, imagesCard]}
+        {basicInfo[0] ? [aboutCard, descriptionCard, imagesCard] : null}
       </aside>
     </Paper>
   );
