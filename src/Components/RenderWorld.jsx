@@ -28,13 +28,13 @@ const RenderWorld = () => {
 
   const worldWrapperRef = useRef();
 
-  useMemo(() => {
+  useEffect(() => {
     if (!countryData) return;
 
     const svg = d3.select(svgRef.current);
     svg
       .style("width", worldWrapperRef.current.clientWidth)
-      .style("height", worldWrapperRef.current.clientHeight);
+      .style("height", worldWrapperRef.current.clientHeight - 50); // subtract 50px that are for mobile broweser //
     const scale = getScale();
 
     // Drag method on svg element
@@ -149,12 +149,9 @@ const RenderWorld = () => {
       .on("mousemove", onMouseMove)
       .on("mouseout", onMouseOut)
       .on("click", onClick);
-  }, [countryData]);
 
-  useEffect(() => {
     // Cleanup on unmounting component
     return () => {
-      const svg = d3.select(svgRef.current);
       svg.select("#container").remove();
     };
   }, [countryData]);
