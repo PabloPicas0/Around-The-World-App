@@ -78,6 +78,7 @@ const Navbar = () => {
       const { id } = selectedCountry.data()[0];
 
       setSpinner(true);
+      setShowInfo(false);
 
       makeInfoCall(id).then((info) => {
         const [basicInfo, wikiDescription, images] = info;
@@ -115,16 +116,14 @@ const Navbar = () => {
     const checkedCountry = d3.select(".checked");
     const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
     const transform = d3.zoomTransform(svg.node());
-    const displayInfo = d3.select(".info-displayer");
-
-    // Prevents from hiding DisplayInfo component on devices width smaller than 960px
-    if (window.innerWidth >= 960) displayInfo.style("transform", "translateX(500px)");
 
     checkedCountry.classed("checked", false);
 
     if (clearButton) clearButton.click();
     transform.k = 1;
 
+    setShowInfo(false);
+    
     d3.transition()
       .duration(700)
       .tween("reset", function () {
@@ -193,7 +192,7 @@ const Navbar = () => {
           </Tooltip>
         </ButtonGroup>
       </Stack>
-      {spinner ? <LinearProgress sx={{ height: "2px" }} /> : null}
+      <LinearProgress sx={{ height: "2px", opacity: spinner ? 1 : 0 }} />
     </Paper>
   );
 };
