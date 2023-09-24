@@ -19,7 +19,7 @@ import {
   searchBarWrapperStyles,
 } from "../styles/NavbarStyles";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import { useParams } from "../Utils/context";
 
@@ -37,7 +37,7 @@ const Navbar = () => {
 
   const autoComplete = useRef(null);
 
-  const handleOption = () => {
+  const handleOption = useCallback(() => {
     if (countryData) {
       const { geometries } = countryData.objects.countries;
 
@@ -56,9 +56,9 @@ const Navbar = () => {
         });
     }
     return ["Loading..."];
-  };
+  }, [countryData]);
 
-  const handleChange = (event, value) => {
+  const handleChange = useCallback((event, value) => {
     const { type } = event;
 
     if ((type === "click" && value !== "") || type === "keydown") {
@@ -96,7 +96,7 @@ const Navbar = () => {
       const [x, y] = typeof coordinates[0][0][0] === "object" ? coordinates[1][0][0] : coordinates[0][1];
 
       d3.transition()
-        .duration(700)
+        .duration(1000)
         .tween("goTo", function () {
           const currentCoords = projection.rotate();
           const nextCoords = projection.rotate([-x, -y]).rotate();
@@ -109,9 +109,9 @@ const Navbar = () => {
           };
         });
     }
-  };
+  }, []);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     const svg = d3.select(svgRef.current);
     const checkedCountry = d3.select(".checked");
     const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
@@ -125,7 +125,7 @@ const Navbar = () => {
     setShowInfo(false);
 
     d3.transition()
-      .duration(700)
+      .duration(1000)
       .tween("reset", function () {
         const currentCoords = projection.rotate();
         const defaultCoords = projection.rotate([0, -20]).rotate();
@@ -141,7 +141,7 @@ const Navbar = () => {
           svg.selectAll("path").attr("d", path);
         };
       });
-  };
+  }, []);
 
   return (
     <Paper sx={navbarContainer} elevation={mode === "light" ? 1 : 7} square>
