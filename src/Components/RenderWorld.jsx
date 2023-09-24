@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import { useParams } from "../Utils/context";
 
@@ -28,7 +28,7 @@ const RenderWorld = () => {
 
   const worldWrapperRef = useRef();
 
-  useEffect(() => {
+  useMemo(() => {
     if (!countryData) return;
 
     const svg = d3.select(svgRef.current);
@@ -43,7 +43,7 @@ const RenderWorld = () => {
       .on("drag", (e) => {
         // projection.rotate() give us array with x, y, z coordinates
         const [x, y] = projection.rotate();
-        const sens = 100 / projection.scale();
+        const sens = 100 / 200;
 
         // We are changing projection coordinates taking old coords
         // And adding ammount of x and y from cursor on drag event
@@ -86,7 +86,7 @@ const RenderWorld = () => {
       nextCountry.classed("checked", true);
 
       setSpinner(true);
-      setShowInfo(false)
+      setShowInfo(false);
 
       makeInfoCall(id).then((info) => {
         const [basicInfo, wikiDescription, images] = info;
@@ -94,7 +94,7 @@ const RenderWorld = () => {
         setBasicInfo([basicInfo, wikiDescription]);
         setImages(images);
         setSpinner(false);
-        setShowInfo(true)
+        setShowInfo(true);
       });
 
       // Get the clicked point in px
@@ -105,7 +105,7 @@ const RenderWorld = () => {
 
       // Create transition on each click
       d3.transition()
-        .duration(700)
+        .duration(1000)
         .tween("rotate", function () {
           const currentCoords = projection.rotate();
           const nextCoords = projection.rotate([-clickCoords[0], -clickCoords[1]]).rotate();
@@ -149,15 +149,18 @@ const RenderWorld = () => {
       .on("mousemove", onMouseMove)
       .on("mouseout", onMouseOut)
       .on("click", onClick);
+  }, [countryData]);
 
+  useEffect(() => {
     // Cleanup on unmounting component
     return () => {
+      const svg = d3.select(svgRef.current);
       svg.select("#container").remove();
     };
   }, [countryData]);
 
   return (
-    <Box className="world-wrapper" ref={worldWrapperRef}> 
+    <Box className="world-wrapper" ref={worldWrapperRef}>
       <svg ref={svgRef} viewBox={`0 0 ${960} ${600}`} id="world-map"></svg>
       <Box id="tooltip" sx={tooltipStyles}></Box>
     </Box>
