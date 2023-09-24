@@ -1,5 +1,10 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+
 import { fetchLands } from "./fetchRequests";
+
+import { ScopedCssBaseline, ThemeProvider, createTheme } from "@mui/material";
+
+import getDesignTokens from "./designMode";
 
 const context = createContext();
 
@@ -13,12 +18,30 @@ export const ParamsProvider = ({ children }) => {
   const [images, setImages] = useState([]);
   const [imageIndex, setImageIndex] = useState(0);
   const [spinner, setSpinner] = useState(false);
-  const [showInfo, setShowInfo] = useState(false)
+  const [showInfo, setShowInfo] = useState(false);
   const [mode, setMode] = useState("light");
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const svgRef = useRef(null);
+
+  const theme = useMemo(() => {
+    return createTheme({
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 400,
+          md: 960,
+          lg: 1100,
+          xl: 1536,
+        },
+      },
+      palette: {
+        mode: mode,
+        ...getDesignTokens(mode),
+      },
+    });
+  }, [mode]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -53,7 +76,9 @@ export const ParamsProvider = ({ children }) => {
         showInfo,
         setShowInfo,
       }}>
-      {children}
+      <ThemeProvider theme={theme}>
+        <ScopedCssBaseline enableColorScheme>{children}</ScopedCssBaseline>
+      </ThemeProvider>
     </context.Provider>
   );
 };
