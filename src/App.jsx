@@ -19,11 +19,11 @@ const boxStyles = {
   gridTemplateRows: "auto 1fr",
   height: "100vh",
   minHeight: "100vh",
-  overflowX: "hidden",
 };
 
 function App() {
-  const { mode } = useParams();
+  const { mode, showInfo } = useParams();
+  const { width } = window.screen;
 
   const theme = useMemo(() => {
     return createTheme({
@@ -47,7 +47,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <ScopedCssBaseline enableColorScheme>
         <Container disableGutters maxWidth={false}>
-          <Box sx={boxStyles}>
+          <Box
+            sx={{
+              ...boxStyles,
+              overflow: (width < 960 && !showInfo) || width > 960 ? "hidden" : "visible",
+            }}>
             <Navbar />
             <RenderWorld />
             <DisplayInfo />
