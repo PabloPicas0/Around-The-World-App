@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { useParams } from "../Utils/context";
 
 import { onMouseDown, onMouseMove, onMouseOut, onMouseUp } from "../Utils/mouseFn";
-import { tooltipStyles, worldWrapperStyles } from "../styles/RenderWorldStyles";
+import { tooltipStyles } from "../styles/RenderWorldStyles";
 
 import * as d3 from "d3";
 import { feature } from "topojson-client";
@@ -16,8 +16,6 @@ export const projection = d3.geoOrthographic().scale(getScale()).center([0, 0]).
 export const path = d3.geoPath(projection);
 
 // Dimmensions for svg element
-const w = 960;
-const h = 600;
 const margin = { top: 30, right: 10, bottom: 30, left: 15 };
 
 // Useful source documentation about crating world map
@@ -28,10 +26,15 @@ const graticule = d3.geoGraticule10();
 const RenderWorld = () => {
   const { countryData, svgRef, setBasicInfo, setSpinner, setImages } = useParams();
 
+  const worldWrapperRef = useRef();
+
   useEffect(() => {
     if (!countryData) return;
 
     const svg = d3.select(svgRef.current);
+    svg
+      .style("width", worldWrapperRef.current.clientWidth)
+      .style("height", worldWrapperRef.current.clientHeight);
     const scale = getScale();
 
     // Drag method on svg element
@@ -152,8 +155,8 @@ const RenderWorld = () => {
   }, [countryData]);
 
   return (
-    <Box sx={worldWrapperStyles} className="world-wrapper">
-      <svg ref={svgRef} viewBox={`0 0 ${w} ${h}`} id="world-map"></svg>
+    <Box className="world-wrapper" ref={worldWrapperRef}>
+      <svg ref={svgRef} viewBox={`0 0 ${960} ${600}`} id="world-map"></svg>
       <Box id="tooltip" sx={tooltipStyles}></Box>
     </Box>
   );
