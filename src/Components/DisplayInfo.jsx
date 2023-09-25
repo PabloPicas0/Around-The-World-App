@@ -60,7 +60,7 @@ const DisplayInfo = () => {
   };
 
   const handleClick = () => {
-    setShowInfo(false)
+    setShowInfo(false);
   };
 
   const aboutCard = (
@@ -126,6 +126,8 @@ const DisplayInfo = () => {
       sx={{
         ...conatinerStyles,
         transform: { xs: "none", md: showInfo ? "translateX(0px)" : "translateX(500px)" },
+        height: "100%",
+        marginBottom: "50px",
       }}
       square>
       <aside style={{ textAlign: "center" }}>

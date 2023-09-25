@@ -6,30 +6,21 @@ import "./App.css";
 
 import { Box, Container } from "@mui/material";
 
-import { useParams } from "./Utils/context";
-
-
 import ImageDialog from "./Components/ImageDialog";
 
 const boxStyles = {
   display: "grid",
   gridTemplateColumns: { xs: "1fr", md: "auto 500px" },
   gridTemplateRows: "auto 1fr",
+  overflowX: "hidden",
   height: "100vh",
   minHeight: "100vh",
 };
 
 function App() {
-  const { showInfo } = useParams();
-  const { width } = window.screen;
-
   return (
     <Container disableGutters maxWidth={false}>
-      <Box
-        sx={{
-          ...boxStyles,
-          overflow: (width < 960 && !showInfo) || width > 960 ? "hidden" : "visible",
-        }}>
+      <Box sx={boxStyles}>
         <Navbar />
         <RenderWorld />
         <DisplayInfo />
