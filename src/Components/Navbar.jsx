@@ -67,7 +67,6 @@ const Navbar = () => {
       const displayInfo = d3.select(".info-displayer");
 
       prevCountry.classed("checked", false);
-      displayInfo.style("transform", "translate(0px)");
 
       const countryName = value.replace(/\W/g, "");
 
@@ -168,7 +167,7 @@ const Navbar = () => {
         </Box>
 
         <ButtonGroup sx={{ display: { xs: "none", md: "inline-flex" } }}>
-          {links.map((link, idx) => {
+          {links.map((link) => {
             const { href, icon, description } = link;
 
             return (
