@@ -64,7 +64,6 @@ const Navbar = () => {
     if ((type === "click" && value !== "") || type === "keydown") {
       const svg = d3.select(svgRef.current);
       const prevCountry = d3.select(".checked");
-      const displayInfo = d3.select(".info-displayer");
 
       prevCountry.classed("checked", false);
 
