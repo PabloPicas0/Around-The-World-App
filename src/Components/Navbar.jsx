@@ -58,7 +58,7 @@ const Navbar = () => {
     return ["Loading..."];
   }, [countryData]);
 
-  const handleChange = useCallback((event, value) => {
+  const handleChange = (event, value) => {
     const { type } = event;
 
     if ((type === "click" && value !== "") || type === "keydown") {
@@ -107,9 +107,9 @@ const Navbar = () => {
           };
         });
     }
-  }, []);
+  };
 
-  const handleReset = useCallback(() => {
+  const handleReset = () => {
     const svg = d3.select(svgRef.current);
     const checkedCountry = d3.select(".checked");
     const clearButton = autoComplete.current.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
@@ -139,7 +139,7 @@ const Navbar = () => {
           svg.selectAll("path").attr("d", path);
         };
       });
-  }, []);
+  };
 
   return (
     <Paper sx={navbarContainer} elevation={mode === "light" ? 1 : 7} square>
