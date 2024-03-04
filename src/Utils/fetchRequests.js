@@ -38,8 +38,7 @@ export const makeInfoCall = async (id) => {
   if (name.common === "DR Congo") name.common = "Democratic Republic of the Congo";
   if (name.common === "Czechia") name.common = "Czech Republic";
 
-  const extract = await fetchWiki(name.common);
-  const images = await fetchImages(name.common);
+  const [extract, images] = await Promise.all([fetchWiki(name.common), fetchImages(name.common)]);
 
   return [...basicInfoData, { extract: extract }, images.results];
 };
