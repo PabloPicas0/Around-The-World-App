@@ -1,4 +1,4 @@
-# Pocket Globe App
+# Around The World App
 
 This app let's you explore all the counties of the world by clicking on them
 on the draggable and zoomable globe.
