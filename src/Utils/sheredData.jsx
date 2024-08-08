@@ -12,7 +12,7 @@ export const links = [
     description: "My LinkedIn profile",
   },
   {
-    href: "https://pablopicas0.github.io/FCC-Portfilio-Webpage/",
+    href: "https://pawelfeliksiak.netlify.app/",
     icon: <Public />,
     description: "My portfolio",
   },
